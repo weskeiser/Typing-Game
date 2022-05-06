@@ -1,14 +1,10 @@
 const TextInput = (props) => {
-  const handleInput = () => {
-    console.log('hi');
+  const handleTextInput = (e) => {
+    props.setTextInputValue(e.target.value);
   };
 
   return (
-    <input
-      type="text"
-      value={props.valueState}
-      onInput={props.handleTextInput}
-    />
+    <input type="text" value={props.valueState} onInput={handleTextInput} />
   );
 };
 

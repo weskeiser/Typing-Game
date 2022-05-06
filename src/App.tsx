@@ -15,23 +15,6 @@ function App() {
     displayText == textInputValue ? console.log('win') : console.log('not yet');
   }, [textInputValue]);
 
-  const handleTextInput = (e) => {
-    setTextInputValue(e.target.value);
-  };
-
-  const handleNewTaskButton = (e) => {
-    const getRandomCharacter = () => {
-      return tempValue[Math.floor(Math.random() * tempValue.length)];
-    };
-
-    let newTask = '';
-    for (let i = 0; i < 8; i++) {
-      newTask += getRandomCharacter();
-    }
-
-    setDisplayText(newTask);
-  };
-
   return (
     <>
       <h1>Helloo World</h1>
@@ -40,11 +23,11 @@ function App() {
       <br />
       <TextInput
         valueState={textInputValue}
-        handleTextInput={handleTextInput}
+        setTextInputValue={setTextInputValue}
       />
       <br />
       <br />
-      <NewTaskButton onClick={handleNewTaskButton} />
+      <NewTaskButton setDisplayText={setDisplayText} tempValue={tempValue} />
     </>
   );
 }
