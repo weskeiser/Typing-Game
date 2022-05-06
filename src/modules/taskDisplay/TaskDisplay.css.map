@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAC;EACX,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,MAAM;EACd,MAAM,EAAE,eAAe;EACvB,UAAU,EAAE,MAAM;EAClB,SAAS,EAAE,IAAI;CAChB",
+    "sources": [
+        "TaskDisplay.scss"
+    ],
+    "names": [],
+    "file": "TaskDisplay.css"
+}

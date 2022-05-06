@@ -1,7 +1,9 @@
+import './TaskDisplay.css';
+
 const Display = (props) => {
   return (
     <>
-      <input type="text" value={props.currentTask} readOnly />
+      <p className="taskDisplay">{props.currentTask}</p>
     </>
   );
 };
