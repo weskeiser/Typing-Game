@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './styles/App.css';
 
 import TextInput from './modules/TextInput/TextInput';
@@ -26,16 +26,11 @@ function App() {
 
     let newTask = '';
     for (let i = 0; i < 8; i++) {
-      console.log('ho');
       newTask += getRandomCharacter();
     }
 
     setDisplayText(newTask);
   };
-
-  // const randomCharacter = () => {
-  //   const newTask = tempValue[Math.floor(Math.random() * tempValue.length)];
-  // };
 
   return (
     <>

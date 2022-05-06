@@ -1,7 +1,7 @@
 const Display = (props) => {
   return (
     <>
-      <input type="text" value={props.currentTask} />
+      <input type="text" value={props.currentTask} readOnly />
     </>
   );
 };
