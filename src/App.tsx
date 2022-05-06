@@ -5,16 +5,19 @@ import TextInput from './modules/TextInput/TextInput';
 import TaskDisplay from './modules/TaskDisplay/TaskDisplay';
 import NewTaskButton from './modules/NewTaskButton/NewTaskButton';
 import ProgressDisplay from './modules/ProgressDisplay/ProgressDisplay';
+import Timer from './modules/Timer/Timer';
 
 const tempValue = [1, 2, 3, 4, 5];
 
 function App() {
-  const [progress, setProgress] = useState('');
+  const [progress, setProgress] = useState('progress');
   const [displayText, setDisplayText] = useState('');
   const [textInputValue, setTextInputValue] = useState('');
 
   useEffect(() => {
-    displayText == textInputValue ? handleProgress() : console.log('not yet');
+    if (displayText == textInputValue) {
+      handleProgress();
+    }
   }, [textInputValue]);
 
   const handleProgress = () => {
@@ -37,7 +40,13 @@ function App() {
 
   return (
     <>
-      <ProgressDisplay progress={progress} />
+      <ProgressDisplay
+        progress={progress}
+        setProgress={setProgress}
+        tempValue={tempValue}
+        setTextInputValue={setTextInputValue}
+        setDisplayText={setDisplayText}
+      />
       <h1>Helloo World</h1>
       <TaskDisplay currentTask={displayText} />
       <TextInput
@@ -47,6 +56,9 @@ function App() {
       <br />
       <br />
       <NewTaskButton setDisplayText={setDisplayText} tempValue={tempValue} />
+      <br />
+      <br />
+      <Timer />
     </>
   );
 }
