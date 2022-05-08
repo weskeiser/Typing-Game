@@ -4,7 +4,7 @@ import './styles/App.css';
 import TextInput from './modules/TextInput/TextInput';
 import TaskDisplay from './modules/TaskDisplay/TaskDisplay';
 import ProgressDisplay from './modules/ProgressDisplay/ProgressDisplay';
-import Timer from './modules/Timer/Timer';
+import TimerButton from './modules/TimerButton/TimerButton';
 import GameStatus from './modules/GameStatus/GameStatus';
 
 import updateTask from './functions/updateTask';
@@ -19,6 +19,11 @@ function App() {
   const [textInputInactive, setTextInputInactive] = useState(false);
   const [taskLength, setTaskLength] = useState(4);
   const [taskTimer, setTaskTimer] = useState(12);
+  const [timeRemaining, setTimeRemaining] = useState(taskTimer);
+  const [intervalId, setIntervalId] = useState(0);
+  const [gameStatus, setGameStatus] = useState(
+    'Start typing or click Play to start a new game!'
+  );
 
   // Refs
   const textInputRef = useRef();
@@ -37,6 +42,13 @@ function App() {
       );
     }
   }, [textInputValue]);
+
+  function startCountdown() {
+    const countdown = setInterval(() => {
+      setTimeRemaining((timeRemaining) => timeRemaining - 1);
+    }, 1000);
+    setIntervalId(countdown);
+  }
 
   return (
     <>
@@ -58,7 +70,7 @@ function App() {
       <br />
       <br />
       <br />
-      <Timer
+      <TimerButton
         characterDatabase={characterDatabase}
         setDisplayText={setDisplayText}
         setTextInputValue={setTextInputValue}
@@ -68,8 +80,13 @@ function App() {
         taskLength={taskLength}
         setProgress={setProgress}
         taskTimer={taskTimer}
+        timeRemaining={timeRemaining}
+        setTimeRemaining={setTimeRemaining}
+        intervalId={intervalId}
+        setIntervalId={setIntervalId}
+        startCountdown={startCountdown}
       />
-      <GameStatus gameStatus={'Game status'} />
+      <GameStatus gameStatus={gameStatus} />
     </>
   );
 }
