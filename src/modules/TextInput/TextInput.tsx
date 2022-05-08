@@ -4,7 +4,12 @@ const TextInput = (props) => {
   };
 
   return (
-    <input type="text" value={props.valueState} onInput={handleTextInput} />
+    <input
+      type="text"
+      value={props.valueState}
+      onInput={handleTextInput}
+      autoFocus
+    />
   );
 };
 

@@ -10,8 +10,8 @@ import Timer from './modules/Timer/Timer';
 const tempValue = [1, 2, 3, 4, 5];
 
 function App() {
-  const [progress, setProgress] = useState('progress');
-  const [displayText, setDisplayText] = useState('');
+  const [progress, setProgress] = useState(0);
+  const [displayText, setDisplayText] = useState('Display');
   const [textInputValue, setTextInputValue] = useState('');
 
   useEffect(() => {
@@ -21,8 +21,7 @@ function App() {
   }, [textInputValue]);
 
   const handleProgress = () => {
-    const prevProgress = progress.slice();
-    const newProgress = prevProgress.concat(displayText);
+    const newProgress = progress + displayText.length;
     setProgress(newProgress);
 
     const getRandomCharacter = () => {
@@ -55,10 +54,12 @@ function App() {
       />
       <br />
       <br />
-      <NewTaskButton setDisplayText={setDisplayText} tempValue={tempValue} />
       <br />
-      <br />
-      <Timer />
+      <Timer
+        tempValue={tempValue}
+        setDisplayText={setDisplayText}
+        TextInput={TextInput}
+      />
     </>
   );
 }
