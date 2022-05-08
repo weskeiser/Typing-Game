@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import generateTask from '../../functions/generateTask';
 
 const Timer = (props) => {
-  const [timeRemaining, setTimeRemaining] = useState(6);
+  const [timeRemaining, setTimeRemaining] = useState(props.taskTimer);
   const [intervalId, setIntervalId] = useState(0);
 
   useEffect(() => {
@@ -17,25 +17,38 @@ const Timer = (props) => {
 
   // Button event handler to start and pause game.
   const handleClick = () => {
-    if (timeRemaining >= 1 && timeRemaining <= 59) {
-      console.log('pause game');
-      // return;
+    // Play and pause game.
+    if (timeRemaining >= 1 && timeRemaining < props.taskTimer) {
+      if (intervalId) {
+        clearInterval(intervalId);
+        setIntervalId(0);
+        props.setTextInputInactive(true);
+        return;
+      } else {
+        const countdown = setInterval(() => {
+          setTimeRemaining((timeRemaining) => timeRemaining - 1);
+        }, 1000);
+        setIntervalId(countdown);
+      }
     }
 
-    // - Set initial task and focus text input.
-    generateTask(
-      props.characterDatabase,
-      props.setTextInputValue,
-      props.setDisplayText,
-      props.taskLength
-    );
-    props.setTextInputInactive(false);
-    props.textInputRef.current.focus();
-    props.setProgress(0);
+    if (
+      (!intervalId && timeRemaining === 0) ||
+      timeRemaining === props.taskTimer
+    ) {
+      // - Set initial task and focus text input.
+      generateTask(
+        props.characterDatabase,
+        props.setTextInputValue,
+        props.setDisplayText,
+        props.taskLength
+      );
+      props.setTextInputInactive(false);
+      props.textInputRef.current.focus();
+      props.setProgress(0);
 
-    // - Set countdown.
-    if (!intervalId) {
-      setTimeRemaining(10);
+      // - Set countdown.
+      setTimeRemaining(props.taskTimer);
       const countdown = setInterval(() => {
         setTimeRemaining((timeRemaining) => timeRemaining - 1);
       }, 1000);

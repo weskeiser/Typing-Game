@@ -67,6 +67,7 @@ function App() {
         setTextInputInactive={setTextInputInactive}
         taskLength={taskLength}
         setProgress={setProgress}
+        taskTimer={taskTimer}
       />
       <GameStatus gameStatus={'Game status'} />
     </>
