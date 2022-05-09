@@ -1,65 +1,84 @@
 import { useEffect } from 'react';
+
 import generateTask from '../../functions/generateTask';
+import startCountdown from '../../functions/startCountdown';
 
-const TimerButton = (props) => {
-  // const [timeRemaining, setTimeRemaining] = useState(props.taskTimer);
-  // const [intervalId, setIntervalId] = useState(0);
-
+const TimerButton = ({
+  characterDatabase,
+  setDisplayText,
+  setTextInputValue,
+  textInputRef,
+  setTextInputInactive,
+  taskLength,
+  setProgress,
+  taskTimer,
+  timeRemaining,
+  setTimeRemaining,
+  intervalId,
+  setIntervalId,
+  currentlyPlaying,
+  setCurrentlyPlaying,
+  setGameStatus,
+  gameStatus,
+}) => {
   useEffect(() => {
     // End of game
-    if (props.intervalId && !props.timeRemaining) {
-      clearInterval(props.intervalId);
-      props.setIntervalId(0);
-      props.setTextInputInactive(true);
-      props.setDisplayText('Task');
+    if (intervalId && !timeRemaining) {
+      clearInterval(intervalId);
+      setIntervalId(0);
+      setTextInputInactive(true);
+      setDisplayText('Task');
+      // setCurrentlyPlaying(false);
+      setGameStatus('Over');
     }
-  }, [props.timeRemaining]);
+  }, [timeRemaining]);
 
-  // Button event handler to start and pause game.
   const handleClick = () => {
-    // Play and pause game.
-    if (props.timeRemaining >= 1 && props.timeRemaining < props.taskTimer) {
-      if (props.intervalId) {
-        clearInterval(props.intervalId);
-        props.setIntervalId(0);
-        props.setTextInputInactive(true);
-        props.setCurrentlyPlaying(false);
+    // - Play and pause game.
+    if (timeRemaining >= 1 && timeRemaining < taskTimer) {
+      // -- Pause
+      if (intervalId) {
+        clearInterval(intervalId);
+        setIntervalId(0);
+        setTextInputInactive(true);
+        setGameStatus('Paused');
         return;
       } else {
-        props.textInputRef.current.focus();
-        props.setTextInputInactive(false);
-        props.startCountdown();
-        props.setCurrentlyPlaying(true);
+        // -- Play
+        textInputRef.current.focus();
+        setTextInputInactive(false);
+        setGameStatus('Playing');
+        startCountdown(setTimeRemaining, setIntervalId);
       }
     }
 
     if (
-      (!props.intervalId && props.timeRemaining === 0) ||
-      props.timeRemaining === props.taskTimer
+      (!intervalId && timeRemaining === 0) ||
+      (!intervalId && timeRemaining === taskTimer)
     ) {
-      // - Set initial task and focus text input.
+      // - Set initial task.
       generateTask(
-        props.characterDatabase,
-        props.setTextInputValue,
-        props.setDisplayText,
-        props.taskLength
+        characterDatabase,
+        setTextInputValue,
+        setDisplayText,
+        taskLength
       );
-      props.setTextInputInactive(false);
-      props.textInputRef.current.focus();
-      props.setProgress(0);
-      props.setCurrentlyPlaying(true);
+      setTextInputInactive(false);
+      textInputRef.current.focus();
+      setProgress(0);
+      setGameStatus('Playing');
 
-      // - Set countdown.
-      props.setTimeRemaining(props.taskTimer);
-      props.startCountdown();
+      // - Start countdown.
+      setTimeRemaining(taskTimer);
+      startCountdown(setTimeRemaining, setIntervalId);
     }
   };
 
   return (
     <>
-      <div>{props.timeRemaining}</div>
+      <div>{timeRemaining}</div>
       <button onClick={handleClick}>
-        {props.currentlyPlaying ? 'Pause' : 'Play'}
+        {gameStatus === 'Playing' ? 'Pause' : 'Play'}
       </button>
     </>
   );

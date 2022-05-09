@@ -1,9 +1,4 @@
-const startCountdown = (
-  setInterval,
-  setTimeRemaining,
-  timeRemaining,
-  setIntervalId
-) => {
+const startCountdown = (setTimeRemaining, setIntervalId) => {
   const countdown = setInterval(() => {
     setTimeRemaining((timeRemaining) => timeRemaining - 1);
   }, 1000);

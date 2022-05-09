@@ -1,18 +1,21 @@
 import { forwardRef } from 'react';
 
-let TextInput = (props, textInputRef) => {
+let TextInput = (
+  { setTextInputValue, textInputValue, readOnly },
+  textInputRef
+) => {
   const handleTextInput = (e) => {
-    props.setTextInputValue(e.target.value);
+    setTextInputValue(e.target.value);
   };
 
   return (
     <input
       ref={textInputRef}
       type="text"
-      value={props.textInputValue}
+      value={textInputValue}
       onInput={handleTextInput}
       autoFocus
-      readOnly={props.readOnly}
+      readOnly={readOnly}
     />
   );
 };

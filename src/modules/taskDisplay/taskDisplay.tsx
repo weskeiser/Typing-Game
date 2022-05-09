@@ -1,9 +1,9 @@
 import './TaskDisplay.css';
 
-const Display = (props) => {
+const Display = ({ currentTask }) => {
   return (
     <>
-      <p className="taskDisplay">{props.currentTask}</p>
+      <p className="taskDisplay">{currentTask}</p>
     </>
   );
 };
