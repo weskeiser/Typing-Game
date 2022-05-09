@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 let TextInput = (
-  { setTextInputValue, textInputValue, readOnly },
+  { setTextInputValue, textInputValue, textInputInactive },
   textInputRef
 ) => {
   const handleTextInput = (e) => {
@@ -15,7 +15,7 @@ let TextInput = (
       value={textInputValue}
       onInput={handleTextInput}
       autoFocus
-      readOnly={readOnly}
+      readOnly={textInputInactive}
     />
   );
 };

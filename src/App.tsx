@@ -4,10 +4,12 @@ import './styles/App.css';
 import TextInput from './modules/TextInput/TextInput';
 import TaskDisplay from './modules/TaskDisplay/TaskDisplay';
 import ProgressDisplay from './modules/ProgressDisplay/ProgressDisplay';
-import TimerButton from './modules/TimerButton/TimerButton';
+import StartButton from './modules/StartButton/StartButton';
+import Countdown from './modules/Countdown/Countdown';
 
 import updateTask from './functions/updateTask';
 import StatusMessage from './modules/StatusMessage/StatusMessage';
+import handleSpaceKey from './functions/handleSpaceKey';
 
 const characterDatabase = [1, 2, 3, 4, 5];
 
@@ -16,7 +18,7 @@ function App() {
   const [progress, setProgress] = useState(0);
   const [displayText, setDisplayText] = useState('Task');
   const [textInputValue, setTextInputValue] = useState('');
-  const [textInputInactive, setTextInputInactive] = useState(false);
+  const [textInputInactive, setTextInputInactive] = useState(true);
   const [taskLength, setTaskLength] = useState(4);
   const [taskTimer, setTaskTimer] = useState(6);
   const [timeRemaining, setTimeRemaining] = useState(taskTimer);
@@ -25,6 +27,7 @@ function App() {
 
   // Refs
   const textInputRef = useRef();
+  const startButtonRef = useRef();
 
   // Effects
   useEffect(() => {
@@ -41,8 +44,15 @@ function App() {
     }
   }, [textInputValue]);
 
+  const handleKeyPress = (e) => {
+    if (e.keyCode === 32) {
+      e.preventDefault();
+      startButtonRef.current.click();
+    }
+  };
+
   return (
-    <>
+    <div tabIndex={-1} onKeyDown={(e) => handleSpaceKey(e, startButtonRef)}>
       <StatusMessage gameStatus={gameStatus} progress={progress} />
       <ProgressDisplay progress={progress} />
       <h1>Typing Game</h1>
@@ -51,12 +61,16 @@ function App() {
         textInputValue={textInputValue}
         setTextInputValue={setTextInputValue}
         ref={textInputRef}
-        readOnly={textInputInactive}
+        textInputInactive={textInputInactive}
       />
       <br />
       <br />
       <br />
-      <TimerButton
+      <Countdown timeRemaining={timeRemaining} />
+      <br />
+      <br />
+      <StartButton
+        ref={startButtonRef}
         characterDatabase={characterDatabase}
         setDisplayText={setDisplayText}
         setTextInputValue={setTextInputValue}
@@ -72,7 +86,7 @@ function App() {
         setGameStatus={setGameStatus}
         gameStatus={gameStatus}
       />
-    </>
+    </div>
   );
 }
 
