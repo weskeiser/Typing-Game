@@ -9,8 +9,8 @@ const updateTask = (
   setDisplayText,
   taskLength
 ) => {
-  const newProgress = progress + displayText.length;
-  setProgress(newProgress);
+  // const newProgress = progress + displayText.length;
+  // setProgress(newProgress);
 
   generateTask(
     characterDatabase,

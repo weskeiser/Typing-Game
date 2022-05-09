@@ -9,7 +9,7 @@ import Countdown from './modules/Countdown/Countdown';
 
 import updateTask from './functions/updateTask';
 import StatusMessage from './modules/StatusMessage/StatusMessage';
-import handleSpaceKey from './functions/handleSpaceKey';
+import handleKeyPress from './functions/handleKeyPress';
 
 const characterDatabase = [1, 2, 3, 4, 5];
 
@@ -20,7 +20,7 @@ function App() {
   const [textInputValue, setTextInputValue] = useState('');
   const [textInputInactive, setTextInputInactive] = useState(true);
   const [taskLength, setTaskLength] = useState(4);
-  const [taskTimer, setTaskTimer] = useState(6);
+  const [taskTimer, setTaskTimer] = useState(599);
   const [timeRemaining, setTimeRemaining] = useState(taskTimer);
   const [intervalId, setIntervalId] = useState(0);
   const [gameStatus, setGameStatus] = useState('');
@@ -44,15 +44,12 @@ function App() {
     }
   }, [textInputValue]);
 
-  const handleKeyPress = (e) => {
-    if (e.keyCode === 32) {
-      e.preventDefault();
-      startButtonRef.current.click();
-    }
-  };
-
   return (
-    <div tabIndex={-1} onKeyDown={(e) => handleSpaceKey(e, startButtonRef)}>
+    <div
+      tabIndex={-1}
+      onKeyDown={(e) => handleKeyPress(e, startButtonRef)}
+      // onClick={textInputRef.current.focus()}
+    >
       <StatusMessage gameStatus={gameStatus} progress={progress} />
       <ProgressDisplay progress={progress} />
       <h1>Typing Game</h1>
@@ -62,6 +59,9 @@ function App() {
         setTextInputValue={setTextInputValue}
         ref={textInputRef}
         textInputInactive={textInputInactive}
+        displayText={displayText}
+        progress={progress}
+        setProgress={setProgress}
       />
       <br />
       <br />

@@ -1,5 +1,10 @@
 const ProgressDisplay = ({ progress }) => {
-  return <h2>{progress}</h2>;
+  return (
+    <>
+      <h2>Score:</h2>
+      <div>{progress}</div>
+    </>
+  );
 };
 
 export default ProgressDisplay;
