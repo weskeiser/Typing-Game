@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import generateTask from '../../functions/generateTask';
 
 const TimerButton = (props) => {
@@ -6,12 +6,12 @@ const TimerButton = (props) => {
   // const [intervalId, setIntervalId] = useState(0);
 
   useEffect(() => {
-    // Clear timer interval.
+    // End of game
     if (props.intervalId && !props.timeRemaining) {
       clearInterval(props.intervalId);
       props.setIntervalId(0);
       props.setTextInputInactive(true);
-      props.setDisplayText('message');
+      props.setDisplayText('Task');
     }
   }, [props.timeRemaining]);
 
@@ -23,12 +23,13 @@ const TimerButton = (props) => {
         clearInterval(props.intervalId);
         props.setIntervalId(0);
         props.setTextInputInactive(true);
-        console.log('here');
+        props.setCurrentlyPlaying(false);
         return;
       } else {
         props.textInputRef.current.focus();
         props.setTextInputInactive(false);
         props.startCountdown();
+        props.setCurrentlyPlaying(true);
       }
     }
 
@@ -46,6 +47,7 @@ const TimerButton = (props) => {
       props.setTextInputInactive(false);
       props.textInputRef.current.focus();
       props.setProgress(0);
+      props.setCurrentlyPlaying(true);
 
       // - Set countdown.
       props.setTimeRemaining(props.taskTimer);
@@ -56,7 +58,9 @@ const TimerButton = (props) => {
   return (
     <>
       <div>{props.timeRemaining}</div>
-      <button onClick={handleClick}>New Game</button>
+      <button onClick={handleClick}>
+        {props.currentlyPlaying ? 'Pause' : 'Play'}
+      </button>
     </>
   );
 };

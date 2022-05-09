@@ -5,7 +5,6 @@ import TextInput from './modules/TextInput/TextInput';
 import TaskDisplay from './modules/TaskDisplay/TaskDisplay';
 import ProgressDisplay from './modules/ProgressDisplay/ProgressDisplay';
 import TimerButton from './modules/TimerButton/TimerButton';
-import GameStatus from './modules/GameStatus/GameStatus';
 
 import updateTask from './functions/updateTask';
 
@@ -14,16 +13,14 @@ const characterDatabase = [1, 2, 3, 4, 5];
 function App() {
   // States
   const [progress, setProgress] = useState(0);
-  const [displayText, setDisplayText] = useState('Display');
+  const [displayText, setDisplayText] = useState('Task');
   const [textInputValue, setTextInputValue] = useState('');
   const [textInputInactive, setTextInputInactive] = useState(false);
   const [taskLength, setTaskLength] = useState(4);
   const [taskTimer, setTaskTimer] = useState(12);
   const [timeRemaining, setTimeRemaining] = useState(taskTimer);
   const [intervalId, setIntervalId] = useState(0);
-  const [gameStatus, setGameStatus] = useState(
-    'Start typing or click Play to start a new game!'
-  );
+  const [currentlyPlaying, setCurrentlyPlaying] = useState(false);
 
   // Refs
   const textInputRef = useRef();
@@ -85,8 +82,9 @@ function App() {
         intervalId={intervalId}
         setIntervalId={setIntervalId}
         startCountdown={startCountdown}
+        currentlyPlaying={currentlyPlaying}
+        setCurrentlyPlaying={setCurrentlyPlaying}
       />
-      <GameStatus gameStatus={gameStatus} />
     </>
   );
 }
