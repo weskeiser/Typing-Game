@@ -11,7 +11,7 @@ import updateTask from './functions/updateTask';
 import StatusMessage from './modules/StatusMessage/StatusMessage';
 import handleKeyPress from './functions/handleKeyPress';
 
-const characterDatabase = [1, 2, 3, 4, 5];
+import characterDatabase from './database/characterDatabase';
 
 function App() {
   // States
@@ -20,7 +20,7 @@ function App() {
   const [textInputValue, setTextInputValue] = useState('');
   const [textInputInactive, setTextInputInactive] = useState(true);
   const [taskLength, setTaskLength] = useState(4);
-  const [taskTimer, setTaskTimer] = useState(599);
+  const [taskTimer, setTaskTimer] = useState(500);
   const [timeRemaining, setTimeRemaining] = useState(taskTimer);
   const [intervalId, setIntervalId] = useState(0);
   const [gameStatus, setGameStatus] = useState('');
@@ -44,48 +44,56 @@ function App() {
     }
   }, [textInputValue]);
 
+  useEffect(() => {
+    focusInput = textInputRef.current.focus();
+  });
+
+  let focusInput = null;
+
   return (
     <div
+      className="game"
       tabIndex={-1}
       onKeyDown={(e) => handleKeyPress(e, startButtonRef)}
-      // onClick={textInputRef.current.focus()}
+      onClick={() => focusInput}
     >
-      <StatusMessage gameStatus={gameStatus} progress={progress} />
       <ProgressDisplay progress={progress} />
-      <h1>Typing Game</h1>
-      <TaskDisplay currentTask={displayText} />
-      <TextInput
-        textInputValue={textInputValue}
-        setTextInputValue={setTextInputValue}
-        ref={textInputRef}
-        textInputInactive={textInputInactive}
-        displayText={displayText}
-        progress={progress}
-        setProgress={setProgress}
-      />
-      <br />
-      <br />
-      <br />
-      <Countdown timeRemaining={timeRemaining} />
-      <br />
-      <br />
-      <StartButton
-        ref={startButtonRef}
-        characterDatabase={characterDatabase}
-        setDisplayText={setDisplayText}
-        setTextInputValue={setTextInputValue}
-        textInputRef={textInputRef}
-        setTextInputInactive={setTextInputInactive}
-        taskLength={taskLength}
-        setProgress={setProgress}
-        taskTimer={taskTimer}
-        timeRemaining={timeRemaining}
-        setTimeRemaining={setTimeRemaining}
-        intervalId={intervalId}
-        setIntervalId={setIntervalId}
-        setGameStatus={setGameStatus}
-        gameStatus={gameStatus}
-      />
+      <div className="game__container">
+        <section className="game--left">
+          {/* <h1 className="game__title">Typing Game</h1> */}
+          <TaskDisplay currentTask={displayText} />
+          <TextInput
+            textInputValue={textInputValue}
+            setTextInputValue={setTextInputValue}
+            ref={textInputRef}
+            textInputInactive={textInputInactive}
+            displayText={displayText}
+            progress={progress}
+            setProgress={setProgress}
+          />
+          <StartButton
+            ref={startButtonRef}
+            characterDatabase={characterDatabase}
+            setDisplayText={setDisplayText}
+            setTextInputValue={setTextInputValue}
+            textInputRef={textInputRef}
+            setTextInputInactive={setTextInputInactive}
+            taskLength={taskLength}
+            setProgress={setProgress}
+            taskTimer={taskTimer}
+            timeRemaining={timeRemaining}
+            setTimeRemaining={setTimeRemaining}
+            intervalId={intervalId}
+            setIntervalId={setIntervalId}
+            setGameStatus={setGameStatus}
+            gameStatus={gameStatus}
+          />
+        </section>
+        <section className="game--right">
+          <StatusMessage gameStatus={gameStatus} progress={progress} />
+          <Countdown timeRemaining={timeRemaining} />
+        </section>
+      </div>
     </div>
   );
 }

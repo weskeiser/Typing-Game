@@ -77,7 +77,11 @@ let StartButton = (
 
   return (
     <>
-      <button ref={startButtonRef} onClick={handleClick}>
+      <button
+        className="game__start-button"
+        ref={startButtonRef}
+        onClick={handleClick}
+      >
         {gameStatus === 'Playing' ? 'Pause' : 'Play'}
       </button>
     </>

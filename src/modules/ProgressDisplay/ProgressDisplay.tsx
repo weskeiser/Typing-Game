@@ -1,8 +1,7 @@
 const ProgressDisplay = ({ progress }) => {
   return (
     <>
-      <h2>Score:</h2>
-      <div>{progress}</div>
+      <h2 className="game__progress-display">Score: {progress}</h2>
     </>
   );
 };

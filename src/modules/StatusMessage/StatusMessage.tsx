@@ -1,15 +1,23 @@
 const StatusMessage = ({ gameStatus, progress }) => {
   const statusHandler = () => {
-    const resultMessage = `Congratulations! You scored ${progress} which is ${
-      progress * 4
-    } characters per minute. Press SPACE to play again.`;
+    const instructions = (
+      <>
+        <p>Press SPACE or click Play to start the game.</p>
+      </>
+    );
 
-    const instructions = 'Press SPACE or click Play to start the game.';
+    const resultMessage = (
+      <>
+        {instructions}
+        <p>Congratulations! You scored {progress}!</p>
+        <p>Characters per minute: {progress * 4}</p>
+      </>
+    );
 
     return gameStatus === 'Over' ? resultMessage : instructions;
   };
 
-  return <p>{statusHandler()}</p>;
+  return <div>{statusHandler()}</div>;
 };
 
 export default StatusMessage;

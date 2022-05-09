@@ -1,11 +1,5 @@
-import './TaskDisplay.css';
-
-const Display = ({ currentTask }) => {
-  return (
-    <>
-      <p className="taskDisplay">{currentTask}</p>
-    </>
-  );
+const TaskDisplay = ({ currentTask }) => {
+  return <p className="game__task-display">{currentTask}</p>;
 };
 
-export default Display;
+export default TaskDisplay;

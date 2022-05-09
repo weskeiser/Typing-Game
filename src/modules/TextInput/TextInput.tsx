@@ -25,6 +25,7 @@ let TextInput = (
 
   return (
     <input
+      className="game__input"
       ref={textInputRef}
       type="text"
       value={textInputValue}
