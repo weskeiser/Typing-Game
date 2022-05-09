@@ -16,8 +16,6 @@ const TimerButton = ({
   setTimeRemaining,
   intervalId,
   setIntervalId,
-  currentlyPlaying,
-  setCurrentlyPlaying,
   setGameStatus,
   gameStatus,
 }) => {

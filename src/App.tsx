@@ -21,7 +21,6 @@ function App() {
   const [taskTimer, setTaskTimer] = useState(6);
   const [timeRemaining, setTimeRemaining] = useState(taskTimer);
   const [intervalId, setIntervalId] = useState(0);
-  const [currentlyPlaying, setCurrentlyPlaying] = useState(false);
   const [gameStatus, setGameStatus] = useState('');
 
   // Refs
@@ -44,12 +43,7 @@ function App() {
 
   return (
     <>
-      <StatusMessage
-        timeRemaining={timeRemaining}
-        intervalId={intervalId}
-        taskTimer={taskTimer}
-        gameStatus={gameStatus}
-      />
+      <StatusMessage gameStatus={gameStatus} progress={progress} />
       <ProgressDisplay progress={progress} />
       <h1>Typing Game</h1>
       <TaskDisplay currentTask={displayText} />
@@ -75,8 +69,6 @@ function App() {
         setTimeRemaining={setTimeRemaining}
         intervalId={intervalId}
         setIntervalId={setIntervalId}
-        currentlyPlaying={currentlyPlaying}
-        setCurrentlyPlaying={setCurrentlyPlaying}
         setGameStatus={setGameStatus}
         gameStatus={gameStatus}
       />
