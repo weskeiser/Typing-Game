@@ -3,7 +3,7 @@ import { forwardRef, useEffect } from 'react';
 import generateTask from '../../functions/generateTask';
 import startCountdown from '../../functions/startCountdown';
 
-let StartButton = (
+let PlayButton = (
   {
     characterDatabase,
     setDisplayText,
@@ -19,6 +19,7 @@ let StartButton = (
     setIntervalId,
     setGameStatus,
     gameStatus,
+    setCurrentCharacter,
   },
   startButtonRef
 ) => {
@@ -31,6 +32,7 @@ let StartButton = (
       setTextInputValue('');
       setDisplayText('Task');
       setGameStatus('Over');
+      setCurrentCharacter(['', '']);
     }
   }, [timeRemaining]);
 
@@ -88,6 +90,6 @@ let StartButton = (
   );
 };
 
-StartButton = forwardRef(StartButton);
+PlayButton = forwardRef(PlayButton);
 
-export default StartButton;
+export default PlayButton;

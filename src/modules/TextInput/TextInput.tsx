@@ -8,6 +8,7 @@ let TextInput = (
     displayText,
     progress,
     setProgress,
+    setCurrentCharacter,
   },
   textInputRef
 ) => {
@@ -20,6 +21,9 @@ let TextInput = (
       setTextInputValue(inputFieldValue);
       const newProgress = progress + 1;
       setProgress(newProgress);
+      setCurrentCharacter([currentLetter, 'Correct']);
+    } else {
+      setCurrentCharacter([currentLetter, 'Wrong']);
     }
   };
 
