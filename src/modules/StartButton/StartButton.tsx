@@ -24,7 +24,7 @@ let StartButton = (
 ) => {
   useEffect(() => {
     // End of game
-    if (intervalId && !timeRemaining) {
+    if (intervalId && timeRemaining < 0.01) {
       clearInterval(intervalId);
       setIntervalId(0);
       setTextInputInactive(true);
@@ -36,7 +36,7 @@ let StartButton = (
 
   const handleClick = () => {
     // - Play and pause game.
-    if (timeRemaining >= 1 && timeRemaining < taskTimer) {
+    if (timeRemaining >= 0.02 && timeRemaining < taskTimer) {
       // -- Pause
       if (intervalId) {
         clearInterval(intervalId);
@@ -54,7 +54,7 @@ let StartButton = (
     }
 
     if (
-      (!intervalId && timeRemaining === 0) ||
+      (!intervalId && timeRemaining <= 0.1) ||
       (!intervalId && timeRemaining === taskTimer)
     ) {
       // - Set initial task.

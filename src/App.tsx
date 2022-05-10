@@ -12,6 +12,7 @@ import StatusMessage from './modules/StatusMessage/StatusMessage';
 import handleKeyPress from './functions/handleKeyPress';
 
 import characterDatabase from './database/characterDatabase';
+import WPM from './modules/WordsPerMinute.tsx/WordsPerMinute';
 
 function App() {
   // States
@@ -20,7 +21,7 @@ function App() {
   const [textInputValue, setTextInputValue] = useState('');
   const [textInputInactive, setTextInputInactive] = useState(true);
   const [taskLength, setTaskLength] = useState(4);
-  const [taskTimer, setTaskTimer] = useState(500);
+  const [taskTimer, setTaskTimer] = useState(5);
   const [timeRemaining, setTimeRemaining] = useState(taskTimer);
   const [intervalId, setIntervalId] = useState(0);
   const [gameStatus, setGameStatus] = useState('');
@@ -57,42 +58,54 @@ function App() {
       onKeyDown={(e) => handleKeyPress(e, startButtonRef)}
       onClick={() => focusInput}
     >
-      <ProgressDisplay progress={progress} />
-      <div className="game__container">
-        <section className="game--left">
-          {/* <h1 className="game__title">Typing Game</h1> */}
-          <TaskDisplay currentTask={displayText} />
-          <TextInput
-            textInputValue={textInputValue}
-            setTextInputValue={setTextInputValue}
-            ref={textInputRef}
-            textInputInactive={textInputInactive}
-            displayText={displayText}
-            progress={progress}
-            setProgress={setProgress}
-          />
-          <StartButton
-            ref={startButtonRef}
-            characterDatabase={characterDatabase}
-            setDisplayText={setDisplayText}
-            setTextInputValue={setTextInputValue}
-            textInputRef={textInputRef}
-            setTextInputInactive={setTextInputInactive}
-            taskLength={taskLength}
-            setProgress={setProgress}
-            taskTimer={taskTimer}
-            timeRemaining={timeRemaining}
-            setTimeRemaining={setTimeRemaining}
-            intervalId={intervalId}
-            setIntervalId={setIntervalId}
-            setGameStatus={setGameStatus}
-            gameStatus={gameStatus}
-          />
-        </section>
-        <section className="game--right">
-          <StatusMessage gameStatus={gameStatus} progress={progress} />
-          <Countdown timeRemaining={timeRemaining} />
-        </section>
+      <div className="game__upper-modules">
+        <ProgressDisplay progress={progress} />
+        <WPM
+          taskTimer={taskTimer}
+          progress={progress}
+          gameStatus={gameStatus}
+        />
+      </div>
+      <div className="game__horizontal-modules">
+        <Countdown timeRemaining={timeRemaining} />
+        <div className="game__main">
+          <section className="game__main--left">
+            <TaskDisplay currentTask={displayText} />
+            <TextInput
+              textInputValue={textInputValue}
+              setTextInputValue={setTextInputValue}
+              ref={textInputRef}
+              textInputInactive={textInputInactive}
+              displayText={displayText}
+              progress={progress}
+              setProgress={setProgress}
+            />
+            <StartButton
+              ref={startButtonRef}
+              characterDatabase={characterDatabase}
+              setDisplayText={setDisplayText}
+              setTextInputValue={setTextInputValue}
+              textInputRef={textInputRef}
+              setTextInputInactive={setTextInputInactive}
+              taskLength={taskLength}
+              setProgress={setProgress}
+              taskTimer={taskTimer}
+              timeRemaining={timeRemaining}
+              setTimeRemaining={setTimeRemaining}
+              intervalId={intervalId}
+              setIntervalId={setIntervalId}
+              setGameStatus={setGameStatus}
+              gameStatus={gameStatus}
+            />
+          </section>
+          <section className="game__main--right">
+            <StatusMessage
+              gameStatus={gameStatus}
+              progress={progress}
+              taskTimer={taskTimer}
+            />
+          </section>
+        </div>
       </div>
     </div>
   );

@@ -1,23 +1,29 @@
 const StatusMessage = ({ gameStatus, progress }) => {
   const statusHandler = () => {
+    const howToStart = <p>Press SPACE to start the game.</p>;
+
     const instructions = (
       <>
-        <p>Press SPACE or click Play to start the game.</p>
+        {howToStart}
+        <br />
+        <p>Type the characters you see.</p>
+        <br />
+        <p>Try to not look at your keyboard!</p>
       </>
     );
 
     const resultMessage = (
       <>
-        {instructions}
+        {howToStart}
+        <br />
         <p>Congratulations! You scored {progress}!</p>
-        <p>Characters per minute: {progress * 4}</p>
       </>
     );
 
     return gameStatus === 'Over' ? resultMessage : instructions;
   };
 
-  return <div>{statusHandler()}</div>;
+  return <div className="game__status-message">{statusHandler()}</div>;
 };
 
 export default StatusMessage;
