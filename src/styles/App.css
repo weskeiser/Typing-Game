@@ -76,4 +76,8 @@ html {
   height: 3em;
   margin-left: 2em;
 }
+
+.game__countdown {
+  border: 1px solid white;
+}
 /*# sourceMappingURL=App.css.map */

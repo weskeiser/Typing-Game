@@ -1,7 +1,7 @@
-// Countdown logic found in StartButton component.
+// Timer logic found in StartButton component.
 
 const Countdown = ({ timeRemaining }) => {
-  return <div>{timeRemaining}</div>;
+  return <div className="game__countdown">{timeRemaining.toFixed()}</div>;
 };
 
 export default Countdown;

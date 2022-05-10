@@ -1,7 +1,7 @@
 const startCountdown = (setTimeRemaining, setIntervalId) => {
   const countdown = setInterval(() => {
-    setTimeRemaining((timeRemaining) => timeRemaining - 1);
-  }, 1000);
+    setTimeRemaining((timeRemaining) => timeRemaining - 0.01);
+  }, 10);
   setIntervalId(countdown);
 };
 
