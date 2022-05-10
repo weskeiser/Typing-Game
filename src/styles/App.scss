@@ -23,10 +23,13 @@ html {
 .game {
   margin-left: 5em;
   color: #ffff;
+  // width: 100%;
+  // height: 100vh;
 
   &__current-character {
     font-size: 5em;
-    margin-left: 0.1em;
+    margin-left: -0.1em;
+    margin-top: 0.2em;
     color: rgb(27, 203, 76);
 
     &--wrong {
@@ -75,7 +78,7 @@ html {
       position: fixed;
       margin-top: 10em;
       margin-left: $countdown-width + $countdown-padding-left + 21em;
-      width: 5em;
+      width: 6em;
       transition: margin-top 0.5s;
       z-index: -1;
 
@@ -122,6 +125,8 @@ html {
       height: 1.2em;
       width: 4em;
       font-size: 3em;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
       text-align: center;
       padding-bottom: 1.2em;
     }
@@ -129,7 +134,7 @@ html {
 
   &__input {
     font-size: 2em;
-    background-color: $display-background;
+    // background-color: $display-background;
     border: $game-border;
     outline: $game-outline;
     width: 5em;
@@ -144,5 +149,19 @@ html {
     width: 10em;
     height: 3em;
     margin-left: 2em;
+    border: $game-border;
+    border-radius: 5%;
+    background-color: $display-background;
+  }
+
+  &__task-controls {
+    margin-top: 5em;
+    width: 3.5em;
+    height: 6em;
+    border-radius: 5%;
+    border: $game-border;
+    border-left: none;
+    outline: $game-outline;
+    background-color: $game-background;
   }
 }

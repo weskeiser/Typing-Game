@@ -17,7 +17,8 @@ html {
 
 .game__current-character {
   font-size: 5em;
-  margin-left: 0.1em;
+  margin-left: -0.1em;
+  margin-top: 0.2em;
   color: #1bcb4c;
 }
 
@@ -69,7 +70,7 @@ html {
   position: fixed;
   margin-top: 10em;
   margin-left: 22.7em;
-  width: 5em;
+  width: 6em;
   -webkit-transition: margin-top 0.5s;
   transition: margin-top 0.5s;
   z-index: -1;
@@ -117,13 +118,13 @@ html {
   height: 1.2em;
   width: 4em;
   font-size: 3em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   text-align: center;
   padding-bottom: 1.2em;
 }
 
 .game__input {
   font-size: 2em;
-  background-color: #dbe1f0;
   border: 4px solid rgba(78, 6, 81, 0.851);
   outline: 1px solid #4848d7;
   width: 5em;
@@ -138,5 +139,19 @@ html {
   width: 10em;
   height: 3em;
   margin-left: 2em;
+  border: 4px solid rgba(78, 6, 81, 0.851);
+  border-radius: 5%;
+  background-color: #dbe1f0;
+}
+
+.game__task-controls {
+  margin-top: 5em;
+  width: 3.5em;
+  height: 6em;
+  border-radius: 5%;
+  border: 4px solid rgba(78, 6, 81, 0.851);
+  border-left: none;
+  outline: 1px solid #4848d7;
+  background-color: #1549a2;
 }
 /*# sourceMappingURL=App.css.map */

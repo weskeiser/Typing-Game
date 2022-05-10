@@ -14,15 +14,16 @@ import handleKeyPress from './functions/handleKeyPress';
 import characterDatabase from './database/characterDatabase';
 import WPM from './modules/WordsPerMinute.tsx/WordsPerMinute';
 import CurrentCharacter from './modules/CurrentCharacter/CurrentCharacter';
+import TaskControls from './modules/TaskControls/TaskControls';
 
 function App() {
   // States
   const [progress, setProgress] = useState(0);
-  const [displayText, setDisplayText] = useState('1l|fK7');
+  const [displayText, setDisplayText] = useState('Display');
   const [textInputValue, setTextInputValue] = useState('');
   const [textInputInactive, setTextInputInactive] = useState(true);
   const [taskLength, setTaskLength] = useState(4);
-  const [taskTimer, setTaskTimer] = useState(3);
+  const [taskTimer, setTaskTimer] = useState(15);
   const [timeRemaining, setTimeRemaining] = useState(taskTimer);
   const [intervalId, setIntervalId] = useState(0);
   const [gameStatus, setGameStatus] = useState('');
@@ -69,7 +70,7 @@ function App() {
         />
       </div>
       <div className="game__horizontal-modules">
-        <div className="horizontal-modules__vertical">
+        <div className="game__horizontal-modules--left">
           <Countdown timeRemaining={timeRemaining} />
           <CurrentCharacter currentCharacter={currentCharacter} />
         </div>
@@ -112,6 +113,9 @@ function App() {
               taskTimer={taskTimer}
             />
           </section>
+        </div>
+        <div className="game__horizontal-modules--right">
+          {/* <TaskControls /> */}
         </div>
       </div>
     </div>
