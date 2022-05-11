@@ -22,7 +22,6 @@ html {
 .game__current-character {
   font-size: 5em;
   margin-left: -0.1em;
-  margin-top: 0.2em;
   color: #1bcb4c;
 }
 
@@ -131,7 +130,6 @@ html {
 }
 
 .game__main__task-controls {
-  margin-left: -1em;
   width: 140%;
 }
 
@@ -147,6 +145,15 @@ html {
 
 .game__main__task-controls__options label {
   margin-left: 0.4em;
+}
+
+.game__main__task-controls__set-countdown {
+  margin-top: 0.5em;
+}
+
+.game__main__task-controls__set-countdown select {
+  margin-top: 0.2em;
+  display: block;
 }
 
 .game__input {
@@ -183,6 +190,6 @@ html {
 .game__settings-button {
   width: 10em;
   height: 3em;
-  margin-left: 3.8em;
+  margin-left: 5em;
 }
 /*# sourceMappingURL=App.css.map */

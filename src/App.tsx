@@ -6,6 +6,8 @@ import TaskDisplay from './modules/TaskDisplay/TaskDisplay';
 import ProgressDisplay from './modules/ProgressDisplay/ProgressDisplay';
 import PlayButton from './modules/PlayButton/PlayButton';
 import Countdown from './modules/Countdown/Countdown';
+import SettingsButton from './modules/SettingsButton/SettingsButton';
+import TaskControls from './modules/TaskControls/TaskControls';
 
 import generateTask from './functions/generateTask';
 import StatusMessage from './modules/StatusMessage/StatusMessage';
@@ -13,9 +15,6 @@ import handleKeyPress from './functions/handleKeyPress';
 
 import WPM from './modules/WordsPerMinute.tsx/WordsPerMinute';
 import CurrentCharacter from './modules/CurrentCharacter/CurrentCharacter';
-
-import SettingsButton from './modules/SettingsButton/SettingsButton';
-import SettingsToggles from './modules/SettingsToggles/SettingsToggles';
 
 function App() {
   // States
@@ -25,7 +24,7 @@ function App() {
   const [textInputInactive, setTextInputInactive] = useState(true);
   const [taskLength, setTaskLength] = useState(4);
   const [taskDuration, setTaskDuration] = useState(15);
-  const [timeRemaining, setTimeRemaining] = useState(taskDuration);
+  const [timeRemaining, setTimeRemaining] = useState(15);
   const [intervalId, setIntervalId] = useState(0);
   const [gameStatus, setGameStatus] = useState('');
   const [settingsVisible, setSettingsVisible] = useState(false);
@@ -94,10 +93,11 @@ function App() {
                 progress={progress}
                 settingsVisible={settingsVisible}
               />
-              <SettingsToggles
+              <TaskControls
                 settingsVisible={settingsVisible}
                 currentDatabase={currentDatabase}
                 setCurrentDatabase={setCurrentDatabase}
+                setTaskDuration={setTaskDuration}
               />
             </section>
           </div>

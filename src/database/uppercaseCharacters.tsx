@@ -1,3 +1,3 @@
-const uppercaseCharacters = 'QWERTYUIOPASDFGHJKLZXCVBNM';
+const uppercaseCharacters = 'QWERTYUOPASDFGHJKLZXCVBNM';
 
 export default uppercaseCharacters;

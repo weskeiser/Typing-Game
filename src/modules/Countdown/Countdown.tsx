@@ -1,7 +1,7 @@
 // Timer logic found in StartButton component.
 
 const Countdown = ({ timeRemaining }) => {
-  const timeRemainingInt = timeRemaining.toFixed();
+  const timeRemainingInt = Math.floor(timeRemaining);
 
   return (
     <div
