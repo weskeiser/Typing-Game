@@ -1,13 +1,24 @@
+import uppercaseCharacters from '../database/uppercase';
+import lowercaseCharacters from '../database/lowercase';
+
 const generateTask = (
-  characterDatabase,
+  currentDatabase,
   setTextInputValue,
   setDisplayText,
   taskLength
 ) => {
+  let mergedDatabases = '';
+  for (let database in currentDatabase) {
+    if (database === 'uppercaseCharacters' && currentDatabase[database]) {
+      mergedDatabases += uppercaseCharacters;
+    }
+    if (database === 'lowercaseCharacters' && currentDatabase[database]) {
+      mergedDatabases += lowercaseCharacters;
+    }
+  }
+
   const getRandomCharacter = () => {
-    return characterDatabase[
-      Math.floor(Math.random() * characterDatabase.length)
-    ];
+    return mergedDatabases[Math.floor(Math.random() * mergedDatabases.length)];
   };
 
   let newTask = '';

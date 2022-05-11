@@ -7,15 +7,13 @@ import ProgressDisplay from './modules/ProgressDisplay/ProgressDisplay';
 import PlayButton from './modules/PlayButton/PlayButton';
 import Countdown from './modules/Countdown/Countdown';
 
-import updateTask from './functions/updateTask';
+import generateTask from './functions/generateTask';
 import StatusMessage from './modules/StatusMessage/StatusMessage';
 import handleKeyPress from './functions/handleKeyPress';
 
 import WPM from './modules/WordsPerMinute.tsx/WordsPerMinute';
 import CurrentCharacter from './modules/CurrentCharacter/CurrentCharacter';
 
-import allCharacters from './database/allCharacters';
-import onlyLetters from './database/onlyLetters';
 import SettingsButton from './modules/SettingsButton/SettingsButton';
 import SettingsToggles from './modules/SettingsToggles/SettingsToggles';
 
@@ -26,14 +24,17 @@ function App() {
   const [textInputValue, setTextInputValue] = useState('');
   const [textInputInactive, setTextInputInactive] = useState(true);
   const [taskLength, setTaskLength] = useState(4);
-  const [taskTimer, setTaskTimer] = useState(15);
-  const [timeRemaining, setTimeRemaining] = useState(taskTimer);
+  const [taskDuration, setTaskDuration] = useState(15);
+  const [timeRemaining, setTimeRemaining] = useState(taskDuration);
   const [intervalId, setIntervalId] = useState(0);
   const [gameStatus, setGameStatus] = useState('');
   const [settingsVisible, setSettingsVisible] = useState(false);
 
   const [currentCharacter, setCurrentCharacter] = useState(['', '']);
-  const [currentDatabase, setCurrentDatabase] = useState(allCharacters);
+  const [currentDatabase, setCurrentDatabase] = useState({
+    lowercaseCharacters: true,
+    uppercaseCharacters: true,
+  });
 
   // Refs
   const textInputRef = useRef();
@@ -42,11 +43,8 @@ function App() {
   // Effects
   useEffect(() => {
     if (displayText == textInputValue) {
-      updateTask(
-        progress,
-        displayText,
-        setProgress,
-        allCharacters,
+      generateTask(
+        currentDatabase,
         setTextInputValue,
         setDisplayText,
         taskLength
@@ -54,23 +52,16 @@ function App() {
     }
   }, [textInputValue]);
 
-  // useEffect(() => {
-  //   focusInput = textInputRef.current.focus();
-  // });
-
-  // let focusInput;
-
   return (
     <div
       className="game"
       tabIndex={-1}
       onKeyDown={(e) => handleKeyPress(e, startButtonRef)}
-      // onClick={() => focusInput}
     >
       <div className="game__upper-modules">
         <ProgressDisplay progress={progress} />
         <WPM
-          taskTimer={taskTimer}
+          taskDuration={taskDuration}
           progress={progress}
           gameStatus={gameStatus}
         />
@@ -99,10 +90,12 @@ function App() {
               <StatusMessage
                 gameStatus={gameStatus}
                 progress={progress}
-                taskTimer={taskTimer}
                 settingsVisible={settingsVisible}
               />
-              <SettingsToggles settingsVisible={settingsVisible} />
+              <SettingsToggles
+                settingsVisible={settingsVisible}
+                setCurrentDatabase={setCurrentDatabase}
+              />
             </section>
           </div>
           <div className="game__main__lower">
@@ -115,7 +108,7 @@ function App() {
               setTextInputInactive={setTextInputInactive}
               taskLength={taskLength}
               setProgress={setProgress}
-              taskTimer={taskTimer}
+              taskDuration={taskDuration}
               timeRemaining={timeRemaining}
               setTimeRemaining={setTimeRemaining}
               intervalId={intervalId}

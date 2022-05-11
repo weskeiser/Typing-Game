@@ -100,7 +100,7 @@ html {
   border: 4px solid rgba(78, 6, 81, 0.851);
   background-color: #1549a2;
   border-radius: 8%;
-  width: 26em;
+  width: 28em;
   height: 14em;
   padding: 1em 2em;
 }
@@ -128,6 +128,23 @@ html {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   text-align: center;
   padding-bottom: 1.2em;
+}
+
+.game__main__task-controls {
+  margin-left: -2em;
+  width: 140%;
+}
+
+.game__main__task-controls__fieldset {
+  border: 1px solid green;
+}
+
+.game__main__task-controls__options {
+  font-size: 0.75em;
+}
+
+.game__main__task-controls__options label {
+  margin-left: 0.4em;
 }
 
 .game__input {

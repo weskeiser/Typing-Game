@@ -12,7 +12,7 @@ let PlayButton = (
     setTextInputInactive,
     taskLength,
     setProgress,
-    taskTimer,
+    taskDuration,
     timeRemaining,
     setTimeRemaining,
     intervalId,
@@ -39,7 +39,7 @@ let PlayButton = (
 
   const handleClick = () => {
     // - Play and pause game.
-    if (timeRemaining >= 0.02 && timeRemaining < taskTimer) {
+    if (timeRemaining >= 0.02 && timeRemaining < taskDuration) {
       // -- Pause
       if (intervalId) {
         clearInterval(intervalId);
@@ -58,7 +58,7 @@ let PlayButton = (
 
     if (
       (!intervalId && timeRemaining <= 0.1) ||
-      (!intervalId && timeRemaining === taskTimer)
+      (!intervalId && timeRemaining === taskDuration)
     ) {
       // - Set initial task.
       generateTask(
@@ -73,7 +73,7 @@ let PlayButton = (
       setGameStatus('Playing');
 
       // - Start countdown.
-      setTimeRemaining(taskTimer);
+      setTimeRemaining(taskDuration);
       startCountdown(setTimeRemaining, setIntervalId);
     }
   };
