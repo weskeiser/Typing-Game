@@ -34,6 +34,12 @@ let PlayButton = (
       setDisplayText('Task');
       setGameStatus('Over');
       setCurrentCharacter(['', '']);
+      generateTask(
+        currentDatabase,
+        setTextInputValue,
+        setDisplayText,
+        taskLength
+      );
     }
   }, [timeRemaining]);
 
@@ -61,12 +67,12 @@ let PlayButton = (
       (!intervalId && timeRemaining === taskDuration)
     ) {
       // - Set initial task.
-      generateTask(
-        currentDatabase,
-        setTextInputValue,
-        setDisplayText,
-        taskLength
-      );
+      // generateTask(
+      //   currentDatabase,
+      //   setTextInputValue,
+      //   setDisplayText,
+      //   taskLength
+      // );
       setTextInputInactive(false);
       textInputRef.current.focus();
       setProgress(0);

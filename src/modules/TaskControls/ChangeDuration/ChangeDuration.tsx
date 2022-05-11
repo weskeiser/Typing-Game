@@ -1,14 +1,15 @@
-const ChangeDuration = ({ setTaskDuration }) => {
+import { forwardRef } from 'react';
+
+let ChangeDuration = ({ test }, upcomingTaskDuration) => {
   return (
     <div className="game__main__task-controls__set-countdown">
       <label htmlFor="setCountdown">Set countdown:</label>
       <select
         name="setCountdown"
         id="setCountdown"
-        // onChange={(e) => {
-        //   setTaskDuration(e.target.value);
-
-        // }}
+        onChange={(e) => {
+          upcomingTaskDuration.current = e.target.value;
+        }}
       >
         <option value="15">15 seconds</option>
         <option value="2">30 seconds</option>
@@ -18,5 +19,7 @@ const ChangeDuration = ({ setTaskDuration }) => {
     </div>
   );
 };
+
+ChangeDuration = forwardRef(ChangeDuration);
 
 export default ChangeDuration;

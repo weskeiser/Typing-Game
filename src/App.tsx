@@ -17,9 +17,15 @@ import WPM from './modules/WordsPerMinute.tsx/WordsPerMinute';
 import CurrentCharacter from './modules/CurrentCharacter/CurrentCharacter';
 
 function App() {
+  // Refs
+  const textInputRef = useRef();
+  const startButtonRef = useRef();
+  const upcomingTaskDuration = useRef();
   // States
   const [progress, setProgress] = useState(0);
-  const [displayText, setDisplayText] = useState('Display');
+  // const [displayText, setDisplayText] = useState(
+  //   generateTask(currentDatabase, setTextInputValue, setDisplayText, taskLength)
+  // );
   const [textInputValue, setTextInputValue] = useState('');
   const [textInputInactive, setTextInputInactive] = useState(true);
   const [taskLength, setTaskLength] = useState(4);
@@ -28,6 +34,7 @@ function App() {
   const [intervalId, setIntervalId] = useState(0);
   const [gameStatus, setGameStatus] = useState('');
   const [settingsVisible, setSettingsVisible] = useState(false);
+  const [displayText, setDisplayText] = useState('Initial');
 
   const [currentCharacter, setCurrentCharacter] = useState(['', '']);
   const [currentDatabase, setCurrentDatabase] = useState({
@@ -36,10 +43,6 @@ function App() {
     numbers: true,
     symbols: true,
   });
-
-  // Refs
-  const textInputRef = useRef();
-  const startButtonRef = useRef();
 
   // Effects
   useEffect(() => {
@@ -52,6 +55,17 @@ function App() {
       );
     }
   }, [textInputValue]);
+
+  useEffect(() => {
+    if (displayText === 'Initial') {
+      generateTask(
+        currentDatabase,
+        setTextInputValue,
+        setDisplayText,
+        taskLength
+      );
+    }
+  }, []);
 
   return (
     <div
@@ -97,7 +111,8 @@ function App() {
                 settingsVisible={settingsVisible}
                 currentDatabase={currentDatabase}
                 setCurrentDatabase={setCurrentDatabase}
-                setTaskDuration={setTaskDuration}
+                upcomingTaskDuration={upcomingTaskDuration}
+                setTimeRemaining={setTimeRemaining}
               />
             </section>
           </div>

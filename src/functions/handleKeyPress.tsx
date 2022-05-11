@@ -8,6 +8,8 @@ const handleKeyPress = (e, startButtonRef) => {
   if (e.keyCode === 8 || e.keyCode === 46) {
     e.preventDefault();
   }
+
+  console.log(e.key);
 };
 
 export default handleKeyPress;

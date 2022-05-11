@@ -1,11 +1,12 @@
+import { forwardRef } from 'react';
 import ChangeDuration from './ChangeDuration/ChangeDuration';
 import ChangeTask from './ChangeTask/ChangeTask';
 
-const TaskControls = ({
+let TaskControls = ({
   settingsVisible,
   currentDatabase,
   setCurrentDatabase,
-  setTaskDuration,
+  upcomingTaskDuration,
 }) => {
   const handleVisibility = settingsVisible
     ? 'game__main__task-controls'
@@ -17,9 +18,11 @@ const TaskControls = ({
         currentDatabase={currentDatabase}
         setCurrentDatabase={setCurrentDatabase}
       />
-      <ChangeDuration setTaskDuration={setTaskDuration} />
+      <ChangeDuration ref={upcomingTaskDuration} />
     </div>
   );
 };
+
+// TaskControls = forwardRef(TaskControls);
 
 export default TaskControls;
