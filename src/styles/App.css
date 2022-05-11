@@ -10,6 +10,10 @@ html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+.hidden {
+  display: none;
+}
+
 .game {
   margin-left: 5em;
   color: #ffff;
@@ -94,15 +98,18 @@ html {
   border: 4px solid rgba(78, 6, 81, 0.851);
   outline: 1px solid #4848d7;
   border: 4px solid rgba(78, 6, 81, 0.851);
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1.7fr 1fr;
-      grid-template-columns: 1.7fr 1fr;
   background-color: #1549a2;
   border-radius: 8%;
   width: 26em;
   height: 14em;
   padding: 1em 2em;
+}
+
+.game__main__upper {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1.7fr 1fr;
+      grid-template-columns: 1.7fr 1fr;
 }
 
 .game__main--left > * {
@@ -134,8 +141,18 @@ html {
   margin-left: 0.45em;
 }
 
-.game__start-button {
-  display: block;
+.game__main__lower {
+  width: 100%;
+}
+
+.game__play-button, .game__settings-button {
+  border: 4px solid rgba(78, 6, 81, 0.851);
+  border-radius: 5%;
+  background-color: #dbe1f0;
+  cursor: pointer;
+}
+
+.game__play-button {
   width: 10em;
   height: 3em;
   margin-left: 2em;
@@ -144,14 +161,9 @@ html {
   background-color: #dbe1f0;
 }
 
-.game__task-controls {
-  margin-top: 5em;
-  width: 3.5em;
-  height: 6em;
-  border-radius: 5%;
-  border: 4px solid rgba(78, 6, 81, 0.851);
-  border-left: none;
-  outline: 1px solid #4848d7;
-  background-color: #1549a2;
+.game__settings-button {
+  width: 10em;
+  height: 3em;
+  margin-left: 3.8em;
 }
 /*# sourceMappingURL=App.css.map */

@@ -11,10 +11,13 @@ import updateTask from './functions/updateTask';
 import StatusMessage from './modules/StatusMessage/StatusMessage';
 import handleKeyPress from './functions/handleKeyPress';
 
-import characterDatabase from './database/characterDatabase';
 import WPM from './modules/WordsPerMinute.tsx/WordsPerMinute';
 import CurrentCharacter from './modules/CurrentCharacter/CurrentCharacter';
-import TaskControls from './modules/TaskControls/TaskControls';
+
+import allCharacters from './database/allCharacters';
+import onlyLetters from './database/onlyLetters';
+import SettingsButton from './modules/SettingsButton/SettingsButton';
+import SettingsToggles from './modules/SettingsToggles/SettingsToggles';
 
 function App() {
   // States
@@ -27,7 +30,10 @@ function App() {
   const [timeRemaining, setTimeRemaining] = useState(taskTimer);
   const [intervalId, setIntervalId] = useState(0);
   const [gameStatus, setGameStatus] = useState('');
+  const [settingsVisible, setSettingsVisible] = useState(false);
+
   const [currentCharacter, setCurrentCharacter] = useState(['', '']);
+  const [currentDatabase, setCurrentDatabase] = useState(allCharacters);
 
   // Refs
   const textInputRef = useRef();
@@ -40,7 +46,7 @@ function App() {
         progress,
         displayText,
         setProgress,
-        characterDatabase,
+        allCharacters,
         setTextInputValue,
         setDisplayText,
         taskLength
@@ -48,18 +54,18 @@ function App() {
     }
   }, [textInputValue]);
 
-  useEffect(() => {
-    focusInput = textInputRef.current.focus();
-  });
+  // useEffect(() => {
+  //   focusInput = textInputRef.current.focus();
+  // });
 
-  let focusInput;
+  // let focusInput;
 
   return (
     <div
       className="game"
       tabIndex={-1}
       onKeyDown={(e) => handleKeyPress(e, startButtonRef)}
-      onClick={() => focusInput}
+      // onClick={() => focusInput}
     >
       <div className="game__upper-modules">
         <ProgressDisplay progress={progress} />
@@ -75,21 +81,34 @@ function App() {
           <CurrentCharacter currentCharacter={currentCharacter} />
         </div>
         <div className="game__main">
-          <section className="game__main--left">
-            <TaskDisplay currentTask={displayText} />
-            <TextInput
-              textInputValue={textInputValue}
-              setTextInputValue={setTextInputValue}
-              ref={textInputRef}
-              textInputInactive={textInputInactive}
-              displayText={displayText}
-              progress={progress}
-              setProgress={setProgress}
-              setCurrentCharacter={setCurrentCharacter}
-            />
+          <div className="game__main__upper">
+            <section className="game__main--left">
+              <TaskDisplay currentTask={displayText} />
+              <TextInput
+                textInputValue={textInputValue}
+                setTextInputValue={setTextInputValue}
+                ref={textInputRef}
+                textInputInactive={textInputInactive}
+                displayText={displayText}
+                progress={progress}
+                setProgress={setProgress}
+                setCurrentCharacter={setCurrentCharacter}
+              />
+            </section>
+            <section className="game__main--right">
+              <StatusMessage
+                gameStatus={gameStatus}
+                progress={progress}
+                taskTimer={taskTimer}
+                settingsVisible={settingsVisible}
+              />
+              <SettingsToggles settingsVisible={settingsVisible} />
+            </section>
+          </div>
+          <div className="game__main__lower">
             <PlayButton
               ref={startButtonRef}
-              characterDatabase={characterDatabase}
+              currentDatabase={currentDatabase}
               setDisplayText={setDisplayText}
               setTextInputValue={setTextInputValue}
               textInputRef={textInputRef}
@@ -105,18 +124,13 @@ function App() {
               gameStatus={gameStatus}
               setCurrentCharacter={setCurrentCharacter}
             />
-          </section>
-          <section className="game__main--right">
-            <StatusMessage
-              gameStatus={gameStatus}
-              progress={progress}
-              taskTimer={taskTimer}
+            <SettingsButton
+              settingsVisible={settingsVisible}
+              setSettingsVisible={setSettingsVisible}
             />
-          </section>
+          </div>
         </div>
-        <div className="game__horizontal-modules--right">
-          {/* <TaskControls /> */}
-        </div>
+        <div className="game__horizontal-modules--right"></div>
       </div>
     </div>
   );

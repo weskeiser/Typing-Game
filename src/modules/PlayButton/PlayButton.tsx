@@ -2,13 +2,13 @@ import { forwardRef, useEffect } from 'react';
 
 import generateTask from '../../functions/generateTask';
 import startCountdown from '../../functions/startCountdown';
+import Button from '../Button/Button';
 
 let PlayButton = (
   {
-    characterDatabase,
+    currentDatabase,
     setDisplayText,
     setTextInputValue,
-    textInputRef,
     setTextInputInactive,
     taskLength,
     setProgress,
@@ -19,6 +19,7 @@ let PlayButton = (
     setIntervalId,
     setGameStatus,
     gameStatus,
+    textInputRef,
     setCurrentCharacter,
   },
   startButtonRef
@@ -61,7 +62,7 @@ let PlayButton = (
     ) {
       // - Set initial task.
       generateTask(
-        characterDatabase,
+        currentDatabase,
         setTextInputValue,
         setDisplayText,
         taskLength
@@ -79,13 +80,12 @@ let PlayButton = (
 
   return (
     <>
-      <button
-        className="game__start-button"
-        ref={startButtonRef}
+      <Button
+        className="game__play-button"
+        buttonRef={startButtonRef}
         onClick={handleClick}
-      >
-        {gameStatus === 'Playing' ? 'Pause' : 'Play'}
-      </button>
+        value={gameStatus === 'Playing' ? 'Pause' : 'Play'}
+      />
     </>
   );
 };

@@ -1,4 +1,4 @@
-const StatusMessage = ({ gameStatus, progress }) => {
+const StatusMessage = ({ gameStatus, progress, settingsVisible }) => {
   const statusHandler = () => {
     const howToStart = <p>Press SPACE to start the game.</p>;
 
@@ -8,10 +8,8 @@ const StatusMessage = ({ gameStatus, progress }) => {
         <br />
         <p>Type the characters you see.</p>
         <br />
-        <p>Try to not look at your keyboard!</p>
       </>
     );
-
     const resultMessage = (
       <>
         {howToStart}
@@ -23,7 +21,15 @@ const StatusMessage = ({ gameStatus, progress }) => {
     return gameStatus === 'Over' ? resultMessage : instructions;
   };
 
-  return <div className="game__status-message">{statusHandler()}</div>;
+  const handleVisibility = settingsVisible
+    ? 'game__status-message hidden'
+    : 'game__status-message';
+
+  return (
+    <>
+      <div className={handleVisibility}>{statusHandler()}</div>
+    </>
+  );
 };
 
 export default StatusMessage;
