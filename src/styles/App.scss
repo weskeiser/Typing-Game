@@ -139,18 +139,17 @@ html {
     }
 
     &__task-controls {
-      // border: 1px solid red;
-      margin-left: -2em;
+      margin-left: -1em;
       width: 140%;
 
       &__fieldset {
-        border: 1px solid green;
+        border: none;
+        padding-top: 0.2em;
       }
 
       &__options {
         font-size: 0.75em;
-        // display: flex;
-        // flex-direction: column;
+        margin-bottom: 0.1em;
 
         input {
         }
@@ -164,7 +163,6 @@ html {
 
   &__input {
     font-size: 2em;
-    // background-color: $display-background;
     border: $game-border;
     outline: $game-outline;
     width: 5em;

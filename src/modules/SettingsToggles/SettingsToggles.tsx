@@ -1,43 +1,44 @@
-const SettingsToggles = ({ settingsVisible, setCurrentDatabase }) => {
+const SettingsToggles = ({
+  settingsVisible,
+  currentDatabase,
+  setCurrentDatabase,
+}) => {
   const handleVisibility = settingsVisible
     ? 'game__main__task-controls'
     : 'game__main__task-controls hidden';
 
-  // const handleChange = (e) => {
-  //   console.log(e.target);
-  //   setCurrentDatabase(e.target.value);
-  // };
+  const handleChange = (e) => {
+    const option = e.target;
+    if (option.checked === true) {
+      setCurrentDatabase({ ...currentDatabase, [option.name]: true });
+    } else {
+      setCurrentDatabase({ ...currentDatabase, [option.name]: false });
+    }
+  };
+
+  const inputAndLabelInDiv = (id, labelName) => {
+    return (
+      <div className="game__main__task-controls__options">
+        <input
+          type="checkbox"
+          name={id}
+          id={id}
+          defaultChecked={true}
+          onChange={(e) => handleChange(e)}
+        />
+        <label htmlFor={id}>{labelName}</label>
+      </div>
+    );
+  };
 
   return (
     <div className={handleVisibility}>
       <fieldset className="game__main__task-controls__fieldset">
         <legend>Include in task:</legend>
-        <div className="game__main__task-controls__options">
-          <input
-            type="checkbox"
-            name="lowercase"
-            id="lowercase"
-            checked="true"
-          />
-          <label htmlFor="lowercase">Lowercase</label>
-        </div>
-        <div className="game__main__task-controls__options">
-          <input
-            type="checkbox"
-            name="uppercase"
-            id="uppercase"
-            checked="true"
-          />
-          <label htmlFor="uppercase">Uppercase</label>
-        </div>
-        <div className="game__main__task-controls__options">
-          <input type="checkbox" name="numbers" id="numbers" checked="true" />
-          <label htmlFor="numbers">Numbers</label>
-        </div>
-        <div className="game__main__task-controls__options">
-          <input type="checkbox" name="symbols" id="symbols" checked="true" />
-          <label htmlFor="symbols">Symbols</label>
-        </div>
+        {inputAndLabelInDiv('lowercaseCharacters', 'Lowercase')}
+        {inputAndLabelInDiv('uppercaseCharacters', 'Uppercase')}
+        {inputAndLabelInDiv('numbers', 'Numbers')}
+        {inputAndLabelInDiv('symbols', 'Symbols')}
       </fieldset>
 
       {/* <select className="game__main__task-controls__task-duration">

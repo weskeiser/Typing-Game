@@ -131,16 +131,18 @@ html {
 }
 
 .game__main__task-controls {
-  margin-left: -2em;
+  margin-left: -1em;
   width: 140%;
 }
 
 .game__main__task-controls__fieldset {
-  border: 1px solid green;
+  border: none;
+  padding-top: 0.2em;
 }
 
 .game__main__task-controls__options {
   font-size: 0.75em;
+  margin-bottom: 0.1em;
 }
 
 .game__main__task-controls__options label {

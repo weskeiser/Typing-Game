@@ -1,5 +1,7 @@
-import uppercaseCharacters from '../database/uppercase';
-import lowercaseCharacters from '../database/lowercase';
+import uppercaseCharacters from '../database/uppercaseCharacters';
+import lowercaseCharacters from '../database/lowercaseCharacters';
+import numbers from '../database/numbers';
+import symbols from '../database/symbols';
 
 const generateTask = (
   currentDatabase,
@@ -14,6 +16,12 @@ const generateTask = (
     }
     if (database === 'lowercaseCharacters' && currentDatabase[database]) {
       mergedDatabases += lowercaseCharacters;
+    }
+    if (database === 'numbers' && currentDatabase[database]) {
+      mergedDatabases += numbers;
+    }
+    if (database === 'symbols' && currentDatabase[database]) {
+      mergedDatabases += symbols;
     }
   }
 

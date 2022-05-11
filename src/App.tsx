@@ -34,6 +34,8 @@ function App() {
   const [currentDatabase, setCurrentDatabase] = useState({
     lowercaseCharacters: true,
     uppercaseCharacters: true,
+    numbers: true,
+    symbols: true,
   });
 
   // Refs
@@ -94,6 +96,7 @@ function App() {
               />
               <SettingsToggles
                 settingsVisible={settingsVisible}
+                currentDatabase={currentDatabase}
                 setCurrentDatabase={setCurrentDatabase}
               />
             </section>
