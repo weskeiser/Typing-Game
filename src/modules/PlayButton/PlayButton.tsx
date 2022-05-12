@@ -21,6 +21,8 @@ let PlayButton = (
     gameStatus,
     textInputRef,
     setCurrentCharacter,
+    upcomingTask,
+    setCurrentDatabase,
   },
   startButtonRef
 ) => {
@@ -34,8 +36,9 @@ let PlayButton = (
       setDisplayText('Task');
       setGameStatus('Over');
       setCurrentCharacter(['', '']);
+      setCurrentDatabase(upcomingTask.current);
       generateTask(
-        currentDatabase,
+        upcomingTask.current,
         setTextInputValue,
         setDisplayText,
         taskLength

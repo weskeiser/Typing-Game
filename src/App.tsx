@@ -26,6 +26,7 @@ function App() {
     numbers: true,
     symbols: true,
     duration: '',
+    updated: false,
   });
 
   // States
@@ -47,22 +48,16 @@ function App() {
     numbers: true,
     symbols: true,
   });
+  // const [upcomingTask, setUpcomingTask] = useState({
+  //   lowercaseCharacters: true,
+  //   uppercaseCharacters: true,
+  //   numbers: true,
+  //   symbols: true,
+  //   duration: '',
+  //   updated: false,
+  // })
 
   // Effects
-
-  useEffect(() => {
-    if (gameStatus === 'Over') {
-      setCurrentDatabase(upcomingTask.current);
-      console.log(currentDatabase);
-      generateTask(
-        currentDatabase,
-        setTextInputValue,
-        setDisplayText,
-        taskLength
-      );
-      console.log(currentDatabase);
-    }
-  }, [gameStatus]);
 
   // - Generate initial task
   useEffect(() => {
@@ -165,6 +160,8 @@ function App() {
               setGameStatus={setGameStatus}
               gameStatus={gameStatus}
               setCurrentCharacter={setCurrentCharacter}
+              upcomingTask={upcomingTask}
+              setCurrentDatabase={setCurrentDatabase}
             />
             <SettingsButton
               settingsVisible={settingsVisible}
