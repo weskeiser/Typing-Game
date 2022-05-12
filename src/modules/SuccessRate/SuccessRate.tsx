@@ -20,7 +20,7 @@ const SuccessRate = ({ gameStatus, successRate }) => {
       <div className="game__success-rate__percentage">
         {successRatePercentage()}
       </div>
-      <h2 className="game__success-rate__text">Win %</h2>
+      <h2 className="game__success-rate__text">Win Ratio</h2>
     </div>
   );
 };

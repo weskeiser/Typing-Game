@@ -142,7 +142,7 @@ html {
     background-color: $game-background;
     border-radius: 8%;
     width: 28em;
-    height: 14em;
+    height: 15em;
     padding: 1em 2em;
 
     &__upper {
@@ -155,8 +155,6 @@ html {
     }
 
     &--right {
-      // margin-top: 1em;
-      // width: 140%;
     }
 
     &__task-display {
@@ -211,12 +209,9 @@ html {
   }
 
   &__status-message {
+    margin-top: 1em;
     p {
-      margin-bottom: 0.4em;
-    }
-
-    &__result {
-      color: $result-color;
+      margin-bottom: 2em;
     }
   }
 

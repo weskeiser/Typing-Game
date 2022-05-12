@@ -135,7 +135,7 @@ html {
   background-color: #1549a2;
   border-radius: 8%;
   width: 28em;
-  height: 14em;
+  height: 15em;
   padding: 1em 2em;
 }
 
@@ -195,12 +195,12 @@ html {
   font-size: 0.9em;
 }
 
-.game__status-message p {
-  margin-bottom: 0.4em;
+.game__status-message {
+  margin-top: 1em;
 }
 
-.game__status-message__result {
-  color: #33ef68;
+.game__status-message p {
+  margin-bottom: 2em;
 }
 
 .game__input {

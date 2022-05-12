@@ -79,7 +79,7 @@ function App() {
         setTimeout(() => {
           setGameStatus('Ready');
           idleTime = '';
-        }, 2000);
+        }, 1000);
       }
     }
   }, [gameStatus]);
