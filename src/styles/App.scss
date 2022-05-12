@@ -26,6 +26,10 @@ html {
   display: none;
 }
 
+.red {
+  color: red;
+}
+
 .game {
   margin-left: 5em;
   color: #ffff;
@@ -94,6 +98,35 @@ html {
       &__int {
         font-size: 3em;
       }
+    }
+  }
+
+  &__success-rate {
+    border: $game-border;
+    outline: $game-outline;
+    border-left: none;
+    background-color: $game-background;
+    border-radius: 5%;
+    text-align: center;
+    position: fixed;
+    margin-top: 4em;
+    margin-left: -6em;
+    width: 6em;
+    height: 5.5em;
+    transition: margin-left 0.5s;
+    z-index: -1;
+    color: $result-color;
+
+    &--visible {
+      margin-left: 0;
+    }
+
+    &__percentage {
+      font-size: 2.8em;
+    }
+
+    &__text {
+      font-size: 1em;
     }
   }
 

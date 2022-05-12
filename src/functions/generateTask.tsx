@@ -4,29 +4,31 @@ import numbers from '../database/numbers';
 import symbols from '../database/symbols';
 
 const generateTask = (
-  currentDatabase,
+  currentTask,
   setTextInputValue,
   setDisplayText,
   taskLength
 ) => {
   let mergedDatabases = '';
-  for (let database in currentDatabase) {
-    if (database === 'uppercaseCharacters' && currentDatabase[database]) {
+  for (let database in currentTask) {
+    if (database === 'uppercaseCharacters' && currentTask[database]) {
       mergedDatabases += uppercaseCharacters;
     }
-    if (database === 'lowercaseCharacters' && currentDatabase[database]) {
+    if (database === 'lowercaseCharacters' && currentTask[database]) {
       mergedDatabases += lowercaseCharacters;
     }
-    if (database === 'numbers' && currentDatabase[database]) {
+    if (database === 'numbers' && currentTask[database]) {
       mergedDatabases += numbers;
     }
-    if (database === 'symbols' && currentDatabase[database]) {
+    if (database === 'symbols' && currentTask[database]) {
       mergedDatabases += symbols;
     }
   }
 
   const getRandomCharacter = () => {
-    return mergedDatabases[Math.floor(Math.random() * mergedDatabases.length)];
+    return mergedDatabases
+      ? mergedDatabases[Math.floor(Math.random() * mergedDatabases.length)]
+      : '';
   };
 
   let newTask = '';

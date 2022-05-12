@@ -8,14 +8,14 @@ let ChangeTask = ({ upcomingTask, setUpcomingTask }) => {
     }
   };
 
-  const inputAndLabelInDiv = (id, labelName) => {
+  const inputAndLabelInDiv = (id, labelName, checked) => {
     return (
       <div className="game__main__task-controls__options">
         <input
           type="checkbox"
           name={id}
           id={id}
-          defaultChecked={true}
+          defaultChecked={checked}
           onChange={(e) => handleChange(e)}
         />
         <label htmlFor={id}>{labelName}</label>
@@ -26,10 +26,10 @@ let ChangeTask = ({ upcomingTask, setUpcomingTask }) => {
   return (
     <fieldset className="game__main__task-controls__fieldset">
       <legend>Include next game:</legend>
-      {inputAndLabelInDiv('lowercaseCharacters', 'Lowercase')}
-      {inputAndLabelInDiv('uppercaseCharacters', 'Uppercase')}
-      {inputAndLabelInDiv('numbers', 'Numbers')}
-      {inputAndLabelInDiv('symbols', 'Symbols')}
+      {inputAndLabelInDiv('lowercaseCharacters', 'Lowercase', true)}
+      {inputAndLabelInDiv('uppercaseCharacters', 'Uppercase', false)}
+      {inputAndLabelInDiv('numbers', 'Numbers', false)}
+      {inputAndLabelInDiv('symbols', 'Symbols', false)}
     </fieldset>
   );
 };

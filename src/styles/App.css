@@ -14,6 +14,10 @@ html {
   display: none;
 }
 
+.red {
+  color: red;
+}
+
 .game {
   margin-left: 5em;
   color: #ffff;
@@ -86,6 +90,36 @@ html {
 
 .game__upper-modules__wpm__int {
   font-size: 3em;
+}
+
+.game__success-rate {
+  border: 4px solid rgba(78, 6, 81, 0.851);
+  outline: 1px solid #4848d7;
+  border-left: none;
+  background-color: #1549a2;
+  border-radius: 5%;
+  text-align: center;
+  position: fixed;
+  margin-top: 4em;
+  margin-left: -6em;
+  width: 6em;
+  height: 5.5em;
+  -webkit-transition: margin-left 0.5s;
+  transition: margin-left 0.5s;
+  z-index: -1;
+  color: #33ef68;
+}
+
+.game__success-rate--visible {
+  margin-left: 0;
+}
+
+.game__success-rate__percentage {
+  font-size: 2.8em;
+}
+
+.game__success-rate__text {
+  font-size: 1em;
 }
 
 .game__horizontal-modules {

@@ -9,6 +9,8 @@ let TextInput = (
     progress,
     setProgress,
     setCurrentCharacter,
+    successRate,
+    setSuccessRate,
   },
   textInputRef
 ) => {
@@ -22,8 +24,10 @@ let TextInput = (
       const newProgress = progress + 1;
       setProgress(newProgress);
       setCurrentCharacter([currentLetter, 'Correct']);
+      setSuccessRate({ ...successRate, correct: successRate.correct + 1 });
     } else {
       setCurrentCharacter([currentLetter, 'Wrong']);
+      setSuccessRate({ ...successRate, incorrect: successRate.incorrect + 1 });
     }
   };
 

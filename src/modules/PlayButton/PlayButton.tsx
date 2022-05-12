@@ -21,23 +21,26 @@ let PlayButton = (
     textInputRef,
     setCurrentCharacter,
     upcomingTask,
-    setCurrentDatabase,
+    setCurrentTask,
     setTaskDuration,
+    setSuccessRate,
   },
   startButtonRef
 ) => {
   useEffect(() => {
     // End of game
     if (intervalId && timeRemaining < 0.01) {
+      setGameStatus('Over');
+      // -- Clear fields
       clearInterval(intervalId);
       setIntervalId(0);
       setTextInputInactive(true);
       setTextInputValue('');
-      setDisplayText('Task');
-      setGameStatus('Over');
       setCurrentCharacter(['', '']);
-      setCurrentDatabase(upcomingTask);
+      // -- Set task with chosen settings
+      setCurrentTask(upcomingTask);
       setTaskDuration(upcomingTask.duration);
+      setTimeRemaining(upcomingTask.duration);
       generateTask(upcomingTask, setTextInputValue, setDisplayText, taskLength);
     }
   }, [timeRemaining]);
@@ -61,6 +64,7 @@ let PlayButton = (
       }
     }
 
+    // - Start initial game
     if (
       (!intervalId && timeRemaining <= 0.1) ||
       (!intervalId && timeRemaining === taskDuration)
@@ -68,9 +72,10 @@ let PlayButton = (
       setTextInputInactive(false);
       textInputRef.current.focus();
       setProgress(0);
+      setSuccessRate({ correct: 0, incorrect: 0 });
       setGameStatus('Playing');
 
-      // - Start countdown.
+      // -- Start countdown.
       setTimeRemaining(taskDuration);
       startCountdown(setTimeRemaining, setIntervalId);
     }

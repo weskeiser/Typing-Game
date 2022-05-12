@@ -3,17 +3,19 @@
 const Countdown = ({ timeRemaining }) => {
   const timeRemainingInt = Math.floor(timeRemaining);
 
-  return (
-    <div
-      className={
-        timeRemainingInt > 9
-          ? 'game__countdown'
-          : 'game__countdown game__countdown--singledigit'
-      }
-    >
-      {timeRemainingInt}
-    </div>
-  );
+  const countdownStyle = () => {
+    if (timeRemainingInt <= 3) {
+      return 'game__countdown game__countdown--singledigit red';
+    }
+    if (timeRemainingInt >= 4 && timeRemainingInt <= 9) {
+      return 'game__countdown game__countdown--singledigit';
+    }
+    if (timeRemainingInt > 9) {
+      return 'game__countdown';
+    }
+  };
+
+  return <div className={countdownStyle()}>{timeRemainingInt}</div>;
 };
 
 export default Countdown;
