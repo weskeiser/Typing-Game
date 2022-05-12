@@ -1,4 +1,3 @@
-import { forwardRef } from 'react';
 import ChangeDuration from './ChangeDuration/ChangeDuration';
 import ChangeTask from './ChangeTask/ChangeTask';
 
@@ -22,7 +21,5 @@ let TaskControls = ({
     </div>
   );
 };
-
-// TaskControls = forwardRef(TaskControls);
 
 export default TaskControls;

@@ -1,24 +1,26 @@
 const StatusMessage = ({ gameStatus, progress, settingsVisible }) => {
   const statusHandler = () => {
-    const howToStart = <p>Press SPACE to start the game.</p>;
-
-    const instructions = (
+    const howToStart = (
       <>
-        {howToStart}
-        <br />
-        <p>Type the characters you see.</p>
-        <br />
+        <p>Press SPACE to Play and Pause</p>
+        <p>Press any key to start.</p>
       </>
     );
+
+    const instructions = howToStart;
+
     const resultMessage = (
       <>
         {howToStart}
-        <br />
-        <p>Congratulations! You scored {progress}!</p>
+        <p className="game__status-message__result">
+          Congratulations! You scored {progress}!
+        </p>
       </>
     );
 
-    return gameStatus === 'Over' ? resultMessage : instructions;
+    return gameStatus === 'Over' || gameStatus === 'Ready'
+      ? resultMessage
+      : instructions;
   };
 
   const handleVisibility = settingsVisible

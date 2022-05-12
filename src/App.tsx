@@ -21,18 +21,16 @@ function App() {
   const textInputRef = useRef();
   const startButtonRef = useRef();
   const upcomingTaskDuration = useRef();
+
   // States
   const [progress, setProgress] = useState(0);
-  // const [displayText, setDisplayText] = useState(
-  //   generateTask(currentDatabase, setTextInputValue, setDisplayText, taskLength)
-  // );
   const [textInputValue, setTextInputValue] = useState('');
   const [textInputInactive, setTextInputInactive] = useState(true);
   const [taskLength, setTaskLength] = useState(4);
-  const [taskDuration, setTaskDuration] = useState(15);
-  const [timeRemaining, setTimeRemaining] = useState(15);
+  const [taskDuration, setTaskDuration] = useState(6);
+  const [timeRemaining, setTimeRemaining] = useState(6);
   const [intervalId, setIntervalId] = useState(0);
-  const [gameStatus, setGameStatus] = useState('');
+  const [gameStatus, setGameStatus] = useState('Initial');
   const [settingsVisible, setSettingsVisible] = useState(false);
   const [displayText, setDisplayText] = useState('Initial');
 
@@ -45,17 +43,8 @@ function App() {
   });
 
   // Effects
-  useEffect(() => {
-    if (displayText == textInputValue) {
-      generateTask(
-        currentDatabase,
-        setTextInputValue,
-        setDisplayText,
-        taskLength
-      );
-    }
-  }, [textInputValue]);
 
+  // - Generate initial task
   useEffect(() => {
     if (displayText === 'Initial') {
       generateTask(
@@ -66,12 +55,37 @@ function App() {
       );
     }
   }, []);
+  // - New taskset after field completion
+  useEffect(() => {
+    if (displayText == textInputValue) {
+      generateTask(
+        currentDatabase,
+        setTextInputValue,
+        setDisplayText,
+        taskLength
+      );
+    }
+  }, [textInputValue]);
+  // - Prevent starting a game too soon
+  useEffect(() => {
+    if (gameStatus === 'Over') {
+      let idleTime;
+      if (!idleTime) {
+        setTimeout(() => {
+          setGameStatus('Ready');
+          idleTime = '';
+        }, 2000);
+      }
+    }
+  }, [gameStatus]);
 
   return (
     <div
       className="game"
       tabIndex={-1}
-      onKeyDown={(e) => handleKeyPress(e, startButtonRef)}
+      onKeyDown={(e) =>
+        handleKeyPress(e, startButtonRef, gameStatus, setGameStatus)
+      }
     >
       <div className="game__upper-modules">
         <ProgressDisplay progress={progress} />
@@ -112,7 +126,6 @@ function App() {
                 currentDatabase={currentDatabase}
                 setCurrentDatabase={setCurrentDatabase}
                 upcomingTaskDuration={upcomingTaskDuration}
-                setTimeRemaining={setTimeRemaining}
               />
             </section>
           </div>

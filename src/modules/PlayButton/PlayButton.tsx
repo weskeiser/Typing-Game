@@ -66,13 +66,6 @@ let PlayButton = (
       (!intervalId && timeRemaining <= 0.1) ||
       (!intervalId && timeRemaining === taskDuration)
     ) {
-      // - Set initial task.
-      // generateTask(
-      //   currentDatabase,
-      //   setTextInputValue,
-      //   setDisplayText,
-      //   taskLength
-      // );
       setTextInputInactive(false);
       textInputRef.current.focus();
       setProgress(0);

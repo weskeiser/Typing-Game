@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-let ChangeDuration = ({ test }, upcomingTaskDuration) => {
+let ChangeDuration = ({}, upcomingTaskDuration) => {
   return (
     <div className="game__main__task-controls__set-countdown">
       <label htmlFor="setCountdown">Set countdown:</label>

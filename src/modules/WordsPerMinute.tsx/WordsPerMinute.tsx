@@ -1,6 +1,6 @@
 const WPM = ({ taskDuration, progress, gameStatus }) => {
   const moduleVisible =
-    gameStatus == 'Over'
+    gameStatus === 'Over' || gameStatus === 'Ready'
       ? 'game__upper-modules__wpm game__upper-modules__wpm--visible'
       : 'game__upper-modules__wpm';
 

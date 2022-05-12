@@ -1,5 +1,12 @@
-const handleKeyPress = (e, startButtonRef) => {
-  // Bind space to Start Button
+import lowercaseCharacters from '../database/lowercaseCharacters';
+import uppercaseCharacters from '../database/uppercaseCharacters';
+import numbers from '../database/numbers';
+import symbols from '../database/symbols';
+
+const handleKeyPress = (e, startButtonRef, gameStatus) => {
+  const mergedDatabases =
+    lowercaseCharacters + uppercaseCharacters + numbers + symbols;
+  // Bind SPACE key to start button
   if (e.keyCode === 32) {
     e.preventDefault();
     startButtonRef.current.click();
@@ -9,7 +16,13 @@ const handleKeyPress = (e, startButtonRef) => {
     e.preventDefault();
   }
 
-  console.log(e.key);
+  if (gameStatus !== 'Playing' && gameStatus !== 'Over') {
+    for (let character of mergedDatabases) {
+      if (e.key === character) {
+        startButtonRef.current.click();
+      }
+    }
+  }
 };
 
 export default handleKeyPress;
