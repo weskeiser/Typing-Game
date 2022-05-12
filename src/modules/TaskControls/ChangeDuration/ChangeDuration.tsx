@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-let ChangeDuration = ({}, upcomingTaskDuration) => {
+let ChangeDuration = ({}, upcomingTask) => {
   return (
     <div className="game__main__task-controls__set-countdown">
       <label htmlFor="setCountdown">Set countdown:</label>
@@ -8,7 +8,11 @@ let ChangeDuration = ({}, upcomingTaskDuration) => {
         name="setCountdown"
         id="setCountdown"
         onChange={(e) => {
-          upcomingTaskDuration.current = e.target.value;
+          upcomingTask.current = {
+            ...upcomingTask.current,
+            duration: e.target.value,
+          };
+          // console.log(upcomingTask.current.duration);
         }}
       >
         <option value="15">15 seconds</option>

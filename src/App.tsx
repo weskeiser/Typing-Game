@@ -20,7 +20,13 @@ function App() {
   // Refs
   const textInputRef = useRef();
   const startButtonRef = useRef();
-  const upcomingTaskDuration = useRef();
+  const upcomingTask = useRef({
+    lowercaseCharacters: true,
+    uppercaseCharacters: true,
+    numbers: true,
+    symbols: true,
+    duration: '',
+  });
 
   // States
   const [progress, setProgress] = useState(0);
@@ -43,6 +49,20 @@ function App() {
   });
 
   // Effects
+
+  useEffect(() => {
+    if (gameStatus === 'Over') {
+      setCurrentDatabase(upcomingTask.current);
+      console.log(currentDatabase);
+      generateTask(
+        currentDatabase,
+        setTextInputValue,
+        setDisplayText,
+        taskLength
+      );
+      console.log(currentDatabase);
+    }
+  }, [gameStatus]);
 
   // - Generate initial task
   useEffect(() => {
@@ -123,9 +143,7 @@ function App() {
               />
               <TaskControls
                 settingsVisible={settingsVisible}
-                currentDatabase={currentDatabase}
-                setCurrentDatabase={setCurrentDatabase}
-                upcomingTaskDuration={upcomingTaskDuration}
+                upcomingTask={upcomingTask}
               />
             </section>
           </div>

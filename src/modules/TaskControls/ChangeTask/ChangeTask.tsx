@@ -1,10 +1,18 @@
-const ChangeTask = ({ currentDatabase, setCurrentDatabase }) => {
+import { forwardRef } from 'react';
+
+let ChangeTask = ({}, upcomingTask) => {
   const handleChange = (e) => {
     const option = e.target;
     if (option.checked === true) {
-      setCurrentDatabase({ ...currentDatabase, [option.name]: true });
+      upcomingTask.current = {
+        ...upcomingTask.current,
+        [option.name]: true,
+      };
     } else {
-      setCurrentDatabase({ ...currentDatabase, [option.name]: false });
+      upcomingTask.current = {
+        ...upcomingTask.current,
+        [option.name]: false,
+      };
     }
   };
 
@@ -33,5 +41,7 @@ const ChangeTask = ({ currentDatabase, setCurrentDatabase }) => {
     </fieldset>
   );
 };
+
+ChangeTask = forwardRef(ChangeTask);
 
 export default ChangeTask;
