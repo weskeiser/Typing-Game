@@ -20,14 +20,6 @@ function App() {
   // Refs
   const textInputRef = useRef();
   const startButtonRef = useRef();
-  const upcomingTask = useRef({
-    lowercaseCharacters: true,
-    uppercaseCharacters: true,
-    numbers: true,
-    symbols: true,
-    duration: '',
-    updated: false,
-  });
 
   // States
   const [progress, setProgress] = useState(0);
@@ -48,14 +40,13 @@ function App() {
     numbers: true,
     symbols: true,
   });
-  // const [upcomingTask, setUpcomingTask] = useState({
-  //   lowercaseCharacters: true,
-  //   uppercaseCharacters: true,
-  //   numbers: true,
-  //   symbols: true,
-  //   duration: '',
-  //   updated: false,
-  // })
+  const [upcomingTask, setUpcomingTask] = useState({
+    lowercaseCharacters: true,
+    uppercaseCharacters: true,
+    numbers: true,
+    symbols: true,
+    duration: '15',
+  });
 
   // Effects
 
@@ -139,13 +130,13 @@ function App() {
               <TaskControls
                 settingsVisible={settingsVisible}
                 upcomingTask={upcomingTask}
+                setUpcomingTask={setUpcomingTask}
               />
             </section>
           </div>
           <div className="game__main__lower">
             <PlayButton
               ref={startButtonRef}
-              currentDatabase={currentDatabase}
               setDisplayText={setDisplayText}
               setTextInputValue={setTextInputValue}
               textInputRef={textInputRef}
@@ -162,6 +153,7 @@ function App() {
               setCurrentCharacter={setCurrentCharacter}
               upcomingTask={upcomingTask}
               setCurrentDatabase={setCurrentDatabase}
+              setTaskDuration={setTaskDuration}
             />
             <SettingsButton
               settingsVisible={settingsVisible}

@@ -162,12 +162,16 @@ html {
       }
 
       &__set-countdown {
-        margin-top: 0.5em;
+        margin-top: 0.55em;
 
         select {
           // width: 3em;
           margin-top: 0.2em;
           display: block;
+        }
+
+        label {
+          font-size: 0.9em;
         }
       }
     }

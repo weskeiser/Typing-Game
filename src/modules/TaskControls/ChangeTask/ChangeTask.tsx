@@ -1,18 +1,10 @@
-import { forwardRef } from 'react';
-
-let ChangeTask = ({}, upcomingTask) => {
+let ChangeTask = ({ upcomingTask, setUpcomingTask }) => {
   const handleChange = (e) => {
     const option = e.target;
     if (option.checked === true) {
-      upcomingTask.current = {
-        ...upcomingTask.current,
-        [option.name]: true,
-      };
+      setUpcomingTask({ ...upcomingTask, [option.name]: true });
     } else {
-      upcomingTask.current = {
-        ...upcomingTask.current,
-        [option.name]: false,
-      };
+      setUpcomingTask({ ...upcomingTask, [option.name]: false });
     }
   };
 
@@ -33,7 +25,7 @@ let ChangeTask = ({}, upcomingTask) => {
 
   return (
     <fieldset className="game__main__task-controls__fieldset">
-      <legend>Include in task:</legend>
+      <legend>Include next game:</legend>
       {inputAndLabelInDiv('lowercaseCharacters', 'Lowercase')}
       {inputAndLabelInDiv('uppercaseCharacters', 'Uppercase')}
       {inputAndLabelInDiv('numbers', 'Numbers')}
@@ -41,7 +33,5 @@ let ChangeTask = ({}, upcomingTask) => {
     </fieldset>
   );
 };
-
-ChangeTask = forwardRef(ChangeTask);
 
 export default ChangeTask;

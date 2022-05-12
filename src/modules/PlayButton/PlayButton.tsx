@@ -6,7 +6,6 @@ import Button from '../Button/Button';
 
 let PlayButton = (
   {
-    currentDatabase,
     setDisplayText,
     setTextInputValue,
     setTextInputInactive,
@@ -23,6 +22,7 @@ let PlayButton = (
     setCurrentCharacter,
     upcomingTask,
     setCurrentDatabase,
+    setTaskDuration,
   },
   startButtonRef
 ) => {
@@ -36,13 +36,9 @@ let PlayButton = (
       setDisplayText('Task');
       setGameStatus('Over');
       setCurrentCharacter(['', '']);
-      setCurrentDatabase(upcomingTask.current);
-      generateTask(
-        upcomingTask.current,
-        setTextInputValue,
-        setDisplayText,
-        taskLength
-      );
+      setCurrentDatabase(upcomingTask);
+      setTaskDuration(upcomingTask.duration);
+      generateTask(upcomingTask, setTextInputValue, setDisplayText, taskLength);
     }
   }, [timeRemaining]);
 

@@ -149,12 +149,16 @@ html {
 }
 
 .game__main__task-controls__set-countdown {
-  margin-top: 0.5em;
+  margin-top: 0.55em;
 }
 
 .game__main__task-controls__set-countdown select {
   margin-top: 0.2em;
   display: block;
+}
+
+.game__main__task-controls__set-countdown label {
+  font-size: 0.9em;
 }
 
 .game__status-message p {
