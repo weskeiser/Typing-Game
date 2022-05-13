@@ -89,7 +89,6 @@ html {
       width: 6em;
       transition: margin-top 0.5s;
       z-index: -1;
-      color: $result-color;
 
       &--visible {
         margin-top: 4.3em;
@@ -97,6 +96,7 @@ html {
 
       &__int {
         font-size: 3em;
+        color: $result-color;
       }
     }
   }
@@ -115,14 +115,15 @@ html {
     height: 5.5em;
     transition: margin-left 0.5s;
     z-index: -1;
-    color: $result-color;
 
     &--visible {
       margin-left: 0;
     }
 
     &__percentage {
-      font-size: 2.8em;
+      font-size: 2em;
+      margin: 0.2em 0;
+      color: $result-color;
     }
 
     &__text {

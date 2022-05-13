@@ -1,21 +1,21 @@
 import { useState, useEffect, useRef } from 'react';
 import './styles/App.css';
 
-import TextInput from './modules/TextInput/TextInput';
-import TaskDisplay from './modules/TaskDisplay/TaskDisplay';
-import ProgressDisplay from './modules/ProgressDisplay/ProgressDisplay';
-import PlayButton from './modules/PlayButton/PlayButton';
-import Countdown from './modules/Countdown/Countdown';
-import SettingsButton from './modules/SettingsButton/SettingsButton';
-import TaskControls from './modules/TaskControls/TaskControls';
+import TextInput from './components/TextInput/TextInput';
+import TaskDisplay from './components/TaskDisplay/TaskDisplay';
+import ProgressDisplay from './components/ProgressDisplay/ProgressDisplay';
+import PlayButton from './components/PlayButton/PlayButton';
+import Countdown from './components/Countdown/Countdown';
+import SettingsButton from './components/SettingsButton/SettingsButton';
+import TaskControls from './components/TaskControls/TaskControls';
 
 import generateTask from './functions/generateTask';
-import StatusMessage from './modules/StatusMessage/StatusMessage';
+import StatusMessage from './components/StatusMessage/StatusMessage';
 import handleKeyPress from './functions/handleKeyPress';
 
-import WPM from './modules/WordsPerMinute.tsx/WordsPerMinute';
-import CurrentCharacter from './modules/CurrentCharacter/CurrentCharacter';
-import SuccessRate from './modules/SuccessRate/SuccessRate';
+import WPM from './components/WordsPerMinute.tsx/WordsPerMinute';
+import CurrentCharacter from './components/CurrentCharacter/CurrentCharacter';
+import SuccessRate from './components/SuccessRate/SuccessRate';
 
 function App() {
   // Refs

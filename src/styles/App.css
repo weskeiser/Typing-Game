@@ -81,7 +81,6 @@ html {
   -webkit-transition: margin-top 0.5s;
   transition: margin-top 0.5s;
   z-index: -1;
-  color: #33ef68;
 }
 
 .game__upper-modules__wpm--visible {
@@ -90,6 +89,7 @@ html {
 
 .game__upper-modules__wpm__int {
   font-size: 3em;
+  color: #33ef68;
 }
 
 .game__success-rate {
@@ -107,7 +107,6 @@ html {
   -webkit-transition: margin-left 0.5s;
   transition: margin-left 0.5s;
   z-index: -1;
-  color: #33ef68;
 }
 
 .game__success-rate--visible {
@@ -115,7 +114,9 @@ html {
 }
 
 .game__success-rate__percentage {
-  font-size: 2.8em;
+  font-size: 2em;
+  margin: 0.2em 0;
+  color: #33ef68;
 }
 
 .game__success-rate__text {

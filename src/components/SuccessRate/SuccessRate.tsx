@@ -10,15 +10,15 @@ const SuccessRate = ({ gameStatus, successRate }) => {
     }
   };
 
-  const moduleVisible =
+  const componentVisible =
     gameStatus === 'Over' || gameStatus === 'Ready'
       ? 'game__success-rate game__success-rate--visible'
       : 'game__success-rate';
 
   return (
-    <div className={moduleVisible}>
+    <div className={componentVisible}>
       <div className="game__success-rate__percentage">
-        {successRatePercentage()}
+        {successRatePercentage()}%
       </div>
       <h2 className="game__success-rate__text">Win Ratio</h2>
     </div>
